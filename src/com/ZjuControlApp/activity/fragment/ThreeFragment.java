@@ -20,12 +20,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemLongClickListener;
 
-import com.ZjuControlApp.adapter.ConversationAdapter;
 import com.appkefu.lib.db.KFConversationHelper;
 import com.appkefu.lib.service.KFMainService;
 import com.appkefu.lib.ui.entity.KFConversationEntity;
 import com.appkefu.lib.utils.KFSLog;
 import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.adapter.ConversationAdapter;
 
 public class ThreeFragment extends Fragment {
 

@@ -21,8 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemLongClickListener;
 
-import com.ZjuControlApp.activity.AddFriendActivity;
-import com.ZjuControlApp.adapter.RosterListViewAdapter;
 import com.appkefu.lib.db.KFConversationHelper;
 import com.appkefu.lib.interfaces.KFIMInterfaces;
 import com.appkefu.lib.service.KFMainService;
@@ -32,6 +30,8 @@ import com.appkefu.lib.ui.entity.KFRosterEntity;
 import com.appkefu.lib.utils.KFSLog;
 import com.appkefu.lib.xmpp.XmppFriend;
 import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.activity.AddFriendActivity;
+import com.ZjuControlApp.adapter.RosterListViewAdapter;
 
 public class OneFragment extends Fragment {
 	private ListView mListView;
