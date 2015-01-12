@@ -66,9 +66,9 @@ public class MessagesActivity extends FragmentActivity implements
 		TwoFragment twoFragment = new TwoFragment();
 		ThreeFragment threeFragment = new ThreeFragment();
 
-		fragmentList.add(0, threeFragment);
-		fragmentList.add(1, oneFragment);
-		fragmentList.add(2, twoFragment);
+		fragmentList.add(0, oneFragment);
+		fragmentList.add(1, twoFragment);
+		fragmentList.add(2, threeFragment);
 
 		text_one.setOnClickListener(this);
 		text_two.setOnClickListener(this);

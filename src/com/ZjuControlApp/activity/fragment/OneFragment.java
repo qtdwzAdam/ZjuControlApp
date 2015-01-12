@@ -33,6 +33,7 @@ import com.herotculb.qunhaichat.R;
 import com.ZjuControlApp.activity.AddFriendActivity;
 import com.ZjuControlApp.adapter.RosterListViewAdapter;
 
+// frame two indeed
 public class OneFragment extends Fragment {
 	private ListView mListView;
 	private List<KFRosterEntity> mRosterList = new ArrayList<KFRosterEntity>();

@@ -14,6 +14,7 @@ import com.herotculb.qunhaichat.R;
 import com.ZjuControlApp.activity.GroupCreateActivity;
 import com.ZjuControlApp.activity.GroupJoinActivity;
 
+// frame three indeed
 public class TwoFragment extends Fragment implements OnClickListener{
 	LinearLayout linear_chuanjian,linear_jiaru;
 	@Override

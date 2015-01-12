@@ -27,6 +27,8 @@ import com.appkefu.lib.utils.KFSLog;
 import com.herotculb.qunhaichat.R;
 import com.ZjuControlApp.adapter.ConversationAdapter;
 
+
+// this is frame one actically
 public class ThreeFragment extends Fragment {
 
 	private ListView mListView;
