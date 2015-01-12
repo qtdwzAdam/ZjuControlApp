@@ -12,7 +12,7 @@
         android:layout_marginRight="20dp"
         android:orientation="vertical" >
 
-        <com.herotculb.qunhaichat.widget.RoundedCornerImageView
+        <com.ZjuControlApp.widget.RoundedCornerImageView
             android:id="@+id/image_icon"
             android:layout_width="100dp"
             android:layout_height="100dp"

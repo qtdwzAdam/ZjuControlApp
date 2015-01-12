@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
-            <com.herotculb.qunhaichat.widget.RoundedCornerImageView
+            <com.ZjuControlApp.widget.RoundedCornerImageView
                 android:id="@+id/recent_userhead"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

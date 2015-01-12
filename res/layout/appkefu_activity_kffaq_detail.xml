@@ -17,7 +17,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@drawable/appkefu_title_btn_back"
+            android:background="@drawable/app_title_btn_back"
             android:text="返回"
             android:textColor="#fff"
             android:textSize="14sp" />
@@ -57,7 +57,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:background="@drawable/appkefu_preference_first_item"
+                android:background="@drawable/app_preference_first_item"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -84,7 +84,7 @@
                 android:id="@+id/appkefu_layout_answer"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/appkefu_preference_last_item"
+                android:background="@drawable/app_preference_last_item"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -114,7 +114,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="14dp"
-                android:background="@drawable/appkefu_btn_style_green"
+                android:background="@drawable/app_btn_style_green"
                 android:gravity="center"
                 android:padding="4dp"
                 android:textColor="#fff"
@@ -128,7 +128,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="14dp"
-                android:background="@drawable/appkefu_btn_style_red"
+                android:background="@drawable/app_btn_style_red"
                 android:gravity="center"
                 android:padding="4dp"
                 android:textColor="#fff"

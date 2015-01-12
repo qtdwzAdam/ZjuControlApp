@@ -39,7 +39,7 @@
             android:layout_alignParentTop="true"            
             android:autoLink="web"
             android:layout_marginRight="60dp"
-            android:background="@drawable/appkefu_chatfrom_bg" />
+            android:background="@drawable/app_chatfrom_bg" />
         
         <TextView
             android:id="@+id/tv_time"

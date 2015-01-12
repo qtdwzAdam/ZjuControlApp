@@ -27,7 +27,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="60dp"
             android:autoLink="web"
-            android:background="@drawable/appkefu_chatto_bg" />
+            android:background="@drawable/app_chatto_bg" />
 
         <TextView
             android:id="@+id/tv_time"

@@ -1,0 +1,6 @@
+<chat-settings>
+  <serverDomain>win-u70nmi801ko</serverDomain>
+  <port>5222</port>
+  <sslEnabled>false</sslEnabled>
+  <sslPort>-1</sslPort>
+</chat-settings>

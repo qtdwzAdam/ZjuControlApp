@@ -20,7 +20,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@drawable/appkefu_title_btn_back"
+            android:background="@drawable/app_title_btn_back"
             android:onClick="chat_back"
             android:text="@string/appkefu_back"
             android:textColor="#fff"
@@ -42,7 +42,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
-            android:background="@drawable/appkefu_title_btn_right"
+            android:background="@drawable/app_title_btn_right"
             android:src="@drawable/appkefu_title_btn_function"/>
         
     </RelativeLayout>
@@ -99,7 +99,7 @@
                 android:contentDescription="switch"
                 android:paddingBottom="4.0dip"
                 android:paddingTop="5.0dip"
-                android:src="@drawable/appkefu_chatting_setmode_msg_btn" />
+                android:src="@drawable/app_chatting_setmode_msg_btn" />
 
             <ImageView
                 android:id="@+id/type_select_normal_btn"
@@ -134,7 +134,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/appkefu_chat_send_btn"
+                    android:background="@drawable/app_chat_send_btn"
                 	android:text="@string/appkefu_chat_send_message"
                     />
 
@@ -161,7 +161,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/appkefu_chat_send_btn"
+                android:background="@drawable/app_chat_send_btn"
                 android:gravity="center"
                 android:text="@string/appkefu_press_to_speak"
                 android:textColor="#000000"
