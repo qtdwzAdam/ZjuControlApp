@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.herotculb.qunhaichat.R;
-import com.ZjuControlApp.activity.GroupCreateActivity;
+import com.ZjuControlApp.activity.AddUserActivity;
+import com.ZjuControlApp.activity.UserInfoActivity;
 import com.ZjuControlApp.activity.GroupJoinActivity;
 
 // frame three indeed
@@ -36,11 +37,11 @@ public class TwoFragment extends Fragment implements OnClickListener{
 		Intent intent = null;
 		switch (v.getId()) {
 		case R.id.linear_chuanjian:
-			intent = new Intent(getActivity(),GroupCreateActivity.class);
+			intent = new Intent(getActivity(),UserInfoActivity.class);
 			startActivity(intent);
 			break;
 		case R.id.linear_jiaru:
-			intent = new Intent(getActivity(),GroupJoinActivity.class);
+			intent = new Intent(getActivity(),AddUserActivity.class);
 			startActivity(intent);
 			break;
 

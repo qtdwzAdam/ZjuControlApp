@@ -38,7 +38,7 @@ public class ErweimaTipActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					Intent intent = new Intent(ErweimaTipActivity.this,
-							AddFriendActivity.class);
+							AddUserActivity.class);
 					intent.putExtra("key", "key");
 					intent.putExtra("resultString", mMessageStr);
 					startActivity(intent);

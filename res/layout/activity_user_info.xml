@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#eee"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+   <RelativeLayout
+        android:id="@+id/layout_user_info_main"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/mmtitle_bg" >
+        <Button
+            android:id="@+id/add_reback_btn"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/app_title_btn_back"
+            android:text="@string/appkefu_back"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="用户信息"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/layout_user_info_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="#0000"
+            android:onClick="click"
+            android:src="@drawable/abc_ic_menu_moreoverflow_normal_holo_light" />
+    </RelativeLayout>
+
+    <!-- details -->
+	<RelativeLayout
+        android:id="@+id/layout_user_info_detail_main"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/layout_user_info_main" >
+
+	    <!-- xueya -->
+		<RelativeLayout
+		    android:id="@+id/user_info_xueya_layout"
+		    android:layout_width="fill_parent"
+		    android:layout_height="45dp"
+		    android:layout_alignParentTop="true"
+	        android:layout_marginTop="10dp" >
+		    <TextView
+		        android:id="@+id/user_info_xueya_label"
+		        android:layout_width="40dp"
+		        android:layout_height="wrap_content"
+		        android:layout_centerVertical="true"
+		        android:layout_alignParentLeft="true"
+		        android:layout_marginLeft="27dp"
+		        android:textSize="20sp"
+		        android:text="血压" />
+		    <TextView
+		        android:id="@+id/user_info_xueya"
+		        android:layout_width="110dp"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentRight="true"
+		        android:layout_marginRight="45dp"
+		        android:layout_centerVertical="true"
+		        android:text="110mmHg"
+		        android:textSize="20sp" />
+		</RelativeLayout>
+
+	    <!-- maibo -->
+		<RelativeLayout
+		    android:id="@+id/user_info_maibo_layout"
+		    android:layout_width="fill_parent"
+		    android:layout_height="45dp"
+        	android:layout_below="@+id/user_info_xueya_layout" 
+	        android:layout_marginTop="10dp" >
+		    <TextView
+		        android:id="@+id/user_info_maibo_label"
+		        android:layout_width="40dp"
+		        android:layout_height="wrap_content"
+		        android:layout_centerVertical="true"
+		        android:layout_alignParentLeft="true"
+		        android:layout_marginLeft="27dp"
+		        android:textSize="20sp"
+		        android:text="脉搏" />
+		    <TextView
+		        android:id="@+id/user_info_maibo"
+		        android:layout_width="110dp"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentRight="true"
+		        android:layout_marginRight="45dp"
+		        android:layout_centerVertical="true"
+		        android:text="100次/分"
+		        android:textSize="20sp" />
+		</RelativeLayout>
+		
+    </RelativeLayout>
+    
+
+    
+
+</RelativeLayout>

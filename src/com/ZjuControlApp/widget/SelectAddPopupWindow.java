@@ -13,10 +13,10 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
-import com.ZjuControlApp.activity.AddFriendActivity;
+import com.ZjuControlApp.activity.AddUserActivity;
 import com.ZjuControlApp.activity.ErcodeScanActivity;
 import com.ZjuControlApp.activity.ErweimaActivity;
-import com.ZjuControlApp.activity.GroupCreateActivity;
+import com.ZjuControlApp.activity.UserInfoActivity;
 import com.herotculb.qunhaichat.R;
 import com.tencent.weibo.oauthv2.OAuthV2;
 
@@ -40,7 +40,7 @@ public class SelectAddPopupWindow extends PopupWindow {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(context, GroupCreateActivity.class);
+				Intent intent = new Intent(context, UserInfoActivity.class);
 				context.startActivity(intent);
 				dismiss();
 
@@ -54,7 +54,7 @@ public class SelectAddPopupWindow extends PopupWindow {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(context, AddFriendActivity.class);
+				Intent intent = new Intent(context, AddUserActivity.class);
 				context.startActivity(intent);
 				dismiss();
 

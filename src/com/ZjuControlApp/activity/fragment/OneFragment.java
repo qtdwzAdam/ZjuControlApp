@@ -5,10 +5,8 @@ import java.util.List;
 
 import org.jivesoftware.smack.util.StringUtils;
 
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -16,21 +14,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemLongClickListener;
-
-import com.appkefu.lib.db.KFConversationHelper;
 import com.appkefu.lib.interfaces.KFIMInterfaces;
 import com.appkefu.lib.service.KFMainService;
 import com.appkefu.lib.ui.activity.KFSubscribeNotificationActivity;
-import com.appkefu.lib.ui.entity.KFConversationEntity;
 import com.appkefu.lib.ui.entity.KFRosterEntity;
 import com.appkefu.lib.utils.KFSLog;
 import com.appkefu.lib.xmpp.XmppFriend;
 import com.herotculb.qunhaichat.R;
-import com.ZjuControlApp.activity.AddFriendActivity;
+import com.ZjuControlApp.activity.AddUserActivity;
 import com.ZjuControlApp.adapter.RosterListViewAdapter;
 
 // frame two indeed
@@ -45,8 +38,9 @@ public class OneFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.fragment_one, container, false);
-		mListView = (ListView) view.findViewById(R.id.roster_listView);
 		
+		/*
+		mListView = (ListView) view.findViewById(R.id.roster_listView);
 		
 		linear_tianjia = (LinearLayout) view.findViewById(R.id.linear_tianjia);
 		linear_yanzheng = (LinearLayout) view
@@ -56,9 +50,8 @@ public class OneFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getActivity(), AddFriendActivity.class);
+				Intent intent = new Intent(getActivity(), AddUserActivity.class);
 				startActivity(intent);
-
 			}
 		});
 		linear_yanzheng.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +64,7 @@ public class OneFragment extends Fragment {
 
 			}
 		});
+		*/
 		return view;
 	}
 
