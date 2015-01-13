@@ -33,7 +33,7 @@ public class MessagesActivity extends FragmentActivity implements
 	private ArrayList<Fragment> fragmentList;
 	TextView text_one, text_two, text_three;
 	ImageView image_one, image_two, image_three;
-	ImageButton btn_shezhi, btn_gengduo;
+	ImageButton btn_shezhi;
 	public static String userNameStr = "";
 
 	// 自定义的弹出框类
@@ -57,7 +57,6 @@ public class MessagesActivity extends FragmentActivity implements
 		image_three = (ImageView) findViewById(R.id.image_three);
 
 		btn_shezhi = (ImageButton) findViewById(R.id.btn_shezhi);
-		btn_gengduo = (ImageButton) findViewById(R.id.btn_gengduo);
 
 		mPager = (ViewPager) findViewById(R.id.vPager_myapps);
 
@@ -75,7 +74,6 @@ public class MessagesActivity extends FragmentActivity implements
 		text_three.setOnClickListener(this);
 
 		btn_shezhi.setOnClickListener(this);
-		btn_gengduo.setOnClickListener(this);
 
 		setBackground(0);
 		FragmentViewPagerAdapter adapter = new FragmentViewPagerAdapter(

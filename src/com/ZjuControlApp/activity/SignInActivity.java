@@ -203,7 +203,15 @@ public class SignInActivity extends Activity implements OnClickListener {
 
 		if ("".equals(username) || "".equals(password))// 判断 帐号和密码
 		{
-			showTips(R.drawable.tips_warning, "帐号或者密码不能为空，\n请输入后再登录！");
+			// TODO change
+			//showTips(R.drawable.tips_warning, "帐号或者密码不能为空，\n请输入后再登录！");
+			mLoginBtn.setEnabled(false);
+			dialog = new LoadingDialog(this, "正在登录...");
+			dialog.show();
+			// Toast.makeText(this, "正在登录...", Toast.LENGTH_LONG).show();
+			// 登录接口
+			//KFIMInterfaces.login(this, username, password);
+			updateStatus(3);
 		} else {
 
 			mLoginBtn.setEnabled(false);
