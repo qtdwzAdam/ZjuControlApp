@@ -5,8 +5,34 @@
     android:orientation="vertical"
     tools:context="com.herotculb.fragmentdemo.MainActivity$PlaceholderFragment" >
 
-   <LinearLayout
-       android:id="@+id/linear_chuanjian"
+    
+    <LinearLayout
+        android:id="@+id/linear_add_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0000"
+            android:src="@drawable/auto_add_friend_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="添加新成员"
+            android:textColor="#000000"
+            android:textStyle="bold|italic" />
+    </LinearLayout>
+    <include layout="@layout/layout_line1" />
+    
+    
+   	<LinearLayout
+       android:id="@+id/linear_user_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
@@ -31,37 +57,7 @@
 
     <include layout="@layout/layout_line1" />
 
-    <LinearLayout
-        android:id="@+id/linear_jiaru"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="10dp" >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#0000"
-            android:src="@drawable/auto_add_friend_icon" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="添加新成员"
-            android:textColor="#000000"
-            android:textStyle="bold|italic" />
-    </LinearLayout>
 
-    <include layout="@layout/layout_line1" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="群列表功能即将上线，敬请期待..."
-            android:gravity="center"
-            android:textColor="#000000"
-            android:textStyle="bold|italic" />
 </LinearLayout>

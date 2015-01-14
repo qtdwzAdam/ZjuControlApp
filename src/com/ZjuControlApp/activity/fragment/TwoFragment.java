@@ -24,8 +24,8 @@ public class TwoFragment extends Fragment implements OnClickListener{
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.fragment_two, container,
 				false);
-		linear_chuanjian = (LinearLayout) view.findViewById(R.id.linear_chuanjian);
-		linear_jiaru = (LinearLayout) view.findViewById(R.id.linear_jiaru);
+		linear_chuanjian = (LinearLayout) view.findViewById(R.id.linear_user_info);
+		linear_jiaru = (LinearLayout) view.findViewById(R.id.linear_add_user);
 		
 		linear_chuanjian.setOnClickListener(this);
 		linear_jiaru.setOnClickListener(this);
@@ -36,11 +36,11 @@ public class TwoFragment extends Fragment implements OnClickListener{
 	public void onClick(View v) {
 		Intent intent = null;
 		switch (v.getId()) {
-		case R.id.linear_chuanjian:
+		case R.id.linear_user_info:
 			intent = new Intent(getActivity(),UserInfoActivity.class);
 			startActivity(intent);
 			break;
-		case R.id.linear_jiaru:
+		case R.id.linear_add_user:
 			intent = new Intent(getActivity(),AddUserActivity.class);
 			startActivity(intent);
 			break;

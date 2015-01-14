@@ -1,7 +1,6 @@
 package com.ZjuControlApp.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,10 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import com.ZjuControlApp.widget.TipsToast;
-import com.appkefu.lib.interfaces.KFIMInterfaces;
 import com.herotculb.qunhaichat.R;
 
 /**
@@ -68,23 +64,14 @@ public class AddUserActivity extends Activity implements OnClickListener{
 		{
 			showTips(R.drawable.tips_warning, "对方帐号不能为空，\n请输入后再添加...");
 		}
-		else if(friendUsername.contains("@"))
+		else if(friendUsername.contains("@") || friendUsername.contains("."))
 		{
 			showTips(R.drawable.tips_warning, "含有非法字符");
 			return;
 		}
 		else 
 		{
-			//判断用户是否存在
-			//if(KFIMInterfaces.isUserExist(friendUsername))
-			//{
-				//添加好友
-				KFIMInterfaces.addFriend(this, friendUsername, "我是昵称");
-			//}	
-			//else
-			//{
-			//	Toast.makeText(this, "用户不存在", Toast.LENGTH_SHORT).show();
-			//}
+			showTips(R.drawable.tips_warning,"Comming soon....");
 		}  
 	}
 	

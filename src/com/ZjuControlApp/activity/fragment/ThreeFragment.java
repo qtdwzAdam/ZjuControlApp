@@ -3,32 +3,24 @@ package com.ZjuControlApp.activity.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jivesoftware.smack.util.StringUtils;
-
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemLongClickListener;
 
 import com.appkefu.lib.db.KFConversationHelper;
-import com.appkefu.lib.service.KFMainService;
 import com.appkefu.lib.ui.entity.KFConversationEntity;
 import com.appkefu.lib.utils.KFSLog;
 import com.herotculb.qunhaichat.R;
 import com.ZjuControlApp.adapter.ConversationAdapter;
 
-
-// this is frame one actically
 public class ThreeFragment extends Fragment {
 
 	private ListView mListView;
@@ -42,6 +34,16 @@ public class ThreeFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_three, container, false);
 		mListView = (ListView) view.findViewById(R.id.history_listView);
 
+		mListView.setOnItemClickListener(new OnItemClickListener()	{
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		mListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
 					int position, long id) {
@@ -81,52 +83,19 @@ public class ThreeFragment extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-		KFSLog.d("onStart");
 
-		IntentFilter intentFilter = new IntentFilter();
-		// 监听消息
-		intentFilter.addAction(KFMainService.ACTION_XMPP_MESSAGE_RECEIVED);
-		getActivity().registerReceiver(mXmppreceiver, intentFilter);
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 
-		invalidateConversation();
 	}
 
 	@Override
 	public void onStop() {
 		super.onStop();
 
-		KFSLog.d("onStop");
-		getActivity().unregisterReceiver(mXmppreceiver);
-	}
-
-	private BroadcastReceiver mXmppreceiver = new BroadcastReceiver() {
-		public void onReceive(Context context, Intent intent) {
-			String action = intent.getAction();
-			if (action.equals(KFMainService.ACTION_XMPP_MESSAGE_RECEIVED)) {
-				String body = intent.getStringExtra("body");
-				String from = StringUtils.parseName(intent
-						.getStringExtra("from"));
-
-				KFSLog.d("body:" + body + " from:" + from);
-
-				invalidateConversation();
-			}
-		}
-	};
-
-	@SuppressWarnings("unchecked")
-	private void invalidateConversation() {
-		mConversationList = KFConversationHelper.getConversationHelper(
-				getActivity()).getAllConversation();
-		mConversationListAdapter = new ConversationAdapter(getActivity(),
-				mConversationList);
-		mListView.setAdapter(mConversationListAdapter);
-		mConversationListAdapter.notifyDataSetChanged();
 	}
 
 }
