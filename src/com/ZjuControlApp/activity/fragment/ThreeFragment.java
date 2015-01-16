@@ -1,45 +1,29 @@
 package com.ZjuControlApp.activity.fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-import android.widget.AdapterView.OnItemLongClickListener;
-
-import com.appkefu.lib.db.KFConversationHelper;
-import com.appkefu.lib.ui.entity.KFConversationEntity;
-import com.appkefu.lib.utils.KFSLog;
 import com.herotculb.qunhaichat.R;
-import com.ZjuControlApp.adapter.ConversationAdapter;
 
 public class ThreeFragment extends Fragment {
-
-	private ListView mListView;
-	private List<KFConversationEntity> mConversationList = new ArrayList<KFConversationEntity>();
-	private ConversationAdapter mConversationListAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.fragment_three, container, false);
-		mListView = (ListView) view.findViewById(R.id.history_listView);
+		
+		
+		/*mListView = (ListView) view.findViewById(R.id.history_listView);
 
 		mListView.setOnItemClickListener(new OnItemClickListener()	{
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
+				// TODO Auto-generated metho d stub
 				
 			}
 			
@@ -76,7 +60,7 @@ public class ThreeFragment extends Fragment {
 				return false;
 			}
 		});
-
+*/
 		return view;
 	}
 
