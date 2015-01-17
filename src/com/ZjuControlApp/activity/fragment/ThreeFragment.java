@@ -1,66 +1,32 @@
 package com.ZjuControlApp.activity.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import com.ZjuControlApp.activity.HomeInfoKongzhiAcitvity;
 import com.herotculb.qunhaichat.R;
 
-public class ThreeFragment extends Fragment {
+public class ThreeFragment extends Fragment implements OnClickListener{
 
+	private LinearLayout kongzhi, inner, outer;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.fragment_three, container, false);
+		kongzhi = (LinearLayout) view.findViewById(R.id.home_info_kongzhi);
+		inner = (LinearLayout) view.findViewById(R.id.home_info_inner);
+		outer = (LinearLayout) view.findViewById(R.id.home_info_outer);
 		
-		
-		/*mListView = (ListView) view.findViewById(R.id.history_listView);
-
-		mListView.setOnItemClickListener(new OnItemClickListener()	{
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated metho d stub
-				
-			}
-			
-		});
-		mListView.setOnItemLongClickListener(new OnItemLongClickListener() {
-			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-					int position, long id) {
-				// TODO Auto-generated method stub
-
-				final int location = position;
-				new AlertDialog.Builder(getActivity())
-						.setMessage("确定要删除此会话？")
-						.setPositiveButton("确定",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int which) {
-										// 是否应该一起将消息记录删除，而不仅仅是删除会话conversation
-										KFConversationEntity entity = (KFConversationEntity) mConversationListAdapter
-												.getItem(location);
-										KFSLog.d("name:" + entity.getName());
-										KFConversationHelper
-												.getConversationHelper(
-														getActivity()
-																.getApplicationContext())
-												.deleteConversation(
-														entity.getName());
-
-										mConversationList.remove(location);
-										mConversationListAdapter
-												.notifyDataSetChanged();
-									}
-								}).setNegativeButton("取消", null).create()
-						.show();
-				return false;
-			}
-		});
-*/
+		kongzhi.setOnClickListener(this);
+		inner.setOnClickListener(this);
+		outer.setOnClickListener(this);
 		return view;
 	}
 
@@ -80,6 +46,28 @@ public class ThreeFragment extends Fragment {
 	public void onStop() {
 		super.onStop();
 
+	}
+
+	@Override
+	public void onClick(View v) {
+		Intent intent = null;
+		switch (v.getId()){
+		case R.id.home_info_kongzhi:
+			intent = new Intent(getActivity(), HomeInfoKongzhiAcitvity.class);
+			startActivity(intent);
+			break;
+		case R.id.home_info_inner:
+			intent = new Intent(getActivity(), HomeInfoKongzhiAcitvity.class);
+			startActivity(intent);
+			break;
+		case R.id.home_info_outer:
+			intent = new Intent(getActivity(), HomeInfoKongzhiAcitvity.class);
+			startActivity(intent);
+			break;
+		default:
+			break;
+		}
+		
 	}
 
 }

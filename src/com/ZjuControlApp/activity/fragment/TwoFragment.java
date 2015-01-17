@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import com.herotculb.qunhaichat.R;
 import com.ZjuControlApp.activity.AddUserActivity;
 import com.ZjuControlApp.activity.UserInfoActivity;
-import com.ZjuControlApp.activity.GroupJoinActivity;
 
 // frame three indeed
 public class TwoFragment extends Fragment implements OnClickListener{

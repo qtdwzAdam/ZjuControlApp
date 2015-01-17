@@ -1,29 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="vertical" 
     android:background="#ffffff"
     tools:context="com.herotculb.fragmentdemo.MainActivity$PlaceholderFragment" >
-
+    
    	<LinearLayout
-       android:id="@+id/home_info_inner"
+       android:id="@+id/home_info_inner_bingxiang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="10dp" >
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#0000"
-            android:src="@drawable/home_info_inner" />
+            android:text="冰箱温度" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="室内环境"
+            android:text="4"
+            android:textColor="#000000"
+            android:layout_marginRight="45dp"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+    </LinearLayout>
+    <include layout="@layout/layout_line1" />
+
+	<LinearLayout
+       android:id="@+id/home_info_inner_kongtiao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0000"
+            android:text="空调温度" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="当前温度：16"
             android:textColor="#000000"
             android:layout_marginRight="45dp"
             android:textSize="20sp"
@@ -31,49 +57,25 @@
     </LinearLayout>
     <include layout="@layout/layout_line1" />
     
+    
 	<LinearLayout
-       android:id="@+id/home_info_outer"
+       android:id="@+id/home_info_inner_meiqi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="10dp" >
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#0000"
-            android:src="@drawable/home_info_outer" />
-        <TextView
+            android:text="煤气状态" />
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="户外指数"
-            android:textColor="#000000"
-            android:layout_marginRight="45dp"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
-    </LinearLayout>
-    <include layout="@layout/layout_line1" />
-
-   	<LinearLayout
-       android:id="@+id/home_info_kongzhi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="10dp" >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#0000"
-            android:src="@drawable/home_info_control" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="家庭控制"
+            android:hint="关"
             android:textColor="#000000"
             android:layout_marginRight="45dp"
             android:textSize="20sp"

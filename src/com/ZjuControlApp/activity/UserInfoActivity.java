@@ -1,18 +1,14 @@
 package com.ZjuControlApp.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.ZjuControlApp.widget.TipsToast;
-import com.appkefu.lib.interfaces.KFIMInterfaces;
 import com.herotculb.qunhaichat.R;
 
 public class UserInfoActivity extends Activity implements OnClickListener{
