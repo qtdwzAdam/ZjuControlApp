@@ -22,7 +22,6 @@ import com.ZjuControlApp.activity.fragment.OneFragment;
 import com.ZjuControlApp.activity.fragment.ThreeFragment;
 import com.ZjuControlApp.activity.fragment.TwoFragment;
 import com.ZjuControlApp.adapter.FragmentViewPagerAdapter;
-import com.ZjuControlApp.widget.SelectAddPopupWindow;
 import com.ZjuControlApp.widget.SelectPicPopupWindow;
 import com.herotculb.qunhaichat.R;
 import com.xiaomi.mipush.sdk.MiPushClient;
@@ -38,7 +37,6 @@ public class MessagesActivity extends FragmentActivity implements
 
 	// 自定义的弹出框类
 	SelectPicPopupWindow menuWindow; // 弹出框
-	SelectAddPopupWindow menuWindow2; // 弹出框
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -155,19 +153,6 @@ public class MessagesActivity extends FragmentActivity implements
 			System.out.println("----------" + x + "---------" + y);
 			uploadImage(MessagesActivity.this, y + 60);
 			break;
-		case R.id.btn_gengduo:
-			MiPushClient.subscribe(getApplicationContext(), "herotculb", null);
-			MiPushClient.setAlias(getApplicationContext(), userNameStr, null);
-			view = findViewById(R.id.btn_gengduo);
-			// 数组长度必须为2
-			int[] locations1 = new int[2];
-			view.getLocationOnScreen(locations1);
-			int x1 = locations1[0];// 获取组件当前位置的横坐标
-			int y1 = locations1[1];// 获取组件当前位置的纵坐标
-			Log.i("System.out", "x:" + x1 + "y:" + y1);
-			System.out.println("----------" + x1 + "---------" + y1);
-			uploadImage2(MessagesActivity.this, y1 + 60);
-			break;
 		}
 	}
 
@@ -180,15 +165,6 @@ public class MessagesActivity extends FragmentActivity implements
 				Gravity.TOP | Gravity.RIGHT, 0, y); // 设置layout在PopupWindow中显示的位置
 	}
 
-	public void uploadImage2(final Activity context, int y) {
-		menuWindow2 = new SelectAddPopupWindow(MessagesActivity.this,
-				itemsOnClick2);
-		// 显示窗口
-		menuWindow2.showAtLocation(
-				MessagesActivity.this.findViewById(R.id.btn_gengduo),
-				Gravity.TOP | Gravity.RIGHT, 0, y); // 设置layout在PopupWindow中显示的位置
-	}
-
 	// 为弹出窗口实现监听类
 	private OnClickListener itemsOnClick = new OnClickListener() {
 
@@ -196,15 +172,7 @@ public class MessagesActivity extends FragmentActivity implements
 			menuWindow.dismiss();
 		}
 	};
-
-	// 为弹出窗口实现监听类
-	private OnClickListener itemsOnClick2 = new OnClickListener() {
-
-		public void onClick(View v) {
-			menuWindow2.dismiss();
-		}
-	};
-
+	
 	@Override
 	public void onBackPressed() {
 		Intent intent = new Intent(MessagesActivity.this, SignOutActivity.class);

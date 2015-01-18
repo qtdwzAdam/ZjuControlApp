@@ -45,15 +45,6 @@
             android:background="#0000"
             android:onClick="click"
             android:src="@drawable/abc_ic_menu_moreoverflow_normal_holo_light" />
-        <ImageButton
-            android:id="@+id/btn_gengduo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@id/btn_shezhi"
-            android:background="#0000"
-            android:src="@drawable/fg" />
     </RelativeLayout>
 
     <LinearLayout
