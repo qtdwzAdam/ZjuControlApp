@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+   
+    <LinearLayout
+        android:id="@+id/hif_kz_freezer_set_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:orientation="vertical"  >
+		<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="#ffffff"
+	        android:gravity="center_vertical"
+	        android:orientation="horizontal"   
+	        android:padding="20dp" >
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:background="#0000"      
+	            android:layout_marginLeft="30dp"
+	       		android:textSize="20sp"
+	            android:text="设定温度" />
+	        <EditText
+	            android:id="@+id/HIF_bingxiang_set_num"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="50dp"
+	            android:textColor="#000000"
+	            android:textSize="20sp"
+	            android:inputType="phone"
+	        	android:background="@drawable/login_editbox"
+	            android:textStyle="bold|italic" />
+	        </LinearLayout>
+	        
+		<LinearLayout
+	       android:id="@+id/HIF_KZ_bingxiang_set"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="#ffffff"
+	        android:gravity="center_vertical"
+	        android:orientation="horizontal"   
+	        android:padding="20dp" >
+	        <Button
+	           android:id="@+id/HIF_KZ_bingxiang_set_btn"
+	           android:layout_width="80dp"
+	           android:layout_height="32dp"
+	           android:layout_alignParentRight="true"
+	           android:background="@drawable/btn_denglu"
+	           android:text="确定"
+	           android:layout_marginLeft="30dp"
+	           android:textColor="#ffffff"
+	           android:textSize="18sp" />
+	        <Button
+	           android:id="@+id/HIF_KZ_bingxiang_cancel_btn"
+	           android:layout_width="80dp"
+	           android:layout_height="32dp"
+	           android:layout_alignParentRight="true"
+	           android:layout_marginLeft="60dp"
+	           android:background="@drawable/btn_denglu"
+	           android:text="取消"
+	           android:textColor="#ffffff"
+	           android:textSize="18sp" />
+	           </LinearLayout>
+	</LinearLayout>
+</LinearLayout>

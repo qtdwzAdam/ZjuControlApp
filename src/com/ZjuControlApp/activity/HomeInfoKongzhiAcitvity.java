@@ -3,24 +3,35 @@ package com.ZjuControlApp.activity;
 
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+
 import com.herotculb.qunhaichat.R;
+import com.xiaomi.mipush.sdk.MiPushClient;
+import com.ZjuControlApp.widget.KzFreezerPopWin;
 import com.ZjuControlApp.widget.TipsToast;
+
 import android.app.Activity;
 import android.os.Build;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener{
 
 	private Button mBackBtn;
-	private EditText mUserBingxiang;
-	private EditText mUserKongtiao;
-	private EditText mUserMeiqi;
+	private TextView mUserBingxiang;
+	private TextView mUserKongtiao;
+	private TextView mUserMeiqi;
 	private ImageButton mCreateBtn;
-	
+	private Button mBXBtn;
+	private Button mKTBtn;
+	private Button mMQBtn;
+
+	// 自定义的弹出框类
+	private KzFreezerPopWin menuWindow; // 弹出框
 	private static TipsToast tipsToast;
 	
 	@Override
@@ -31,29 +42,71 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 		mBackBtn = (Button)findViewById(R.id.home_reback_btn);
 		mBackBtn.setOnClickListener(this);
 		
-		mUserBingxiang = (EditText)findViewById(R.id.home_info_bingxiang);
-		mUserKongtiao = (EditText)findViewById(R.id.home_info_kongtiao);
-		mUserMeiqi = (EditText)findViewById(R.id.home_info_meiqi);
+		mUserBingxiang = (TextView)findViewById(R.id.HIF_bingxiang);
+		mUserKongtiao = (TextView)findViewById(R.id.HIF_kongtiao);
+		mUserMeiqi = (TextView)findViewById(R.id.HIF_meiqi);
 		
-		mCreateBtn = (ImageButton)findViewById(R.id.layout_home_info_setting);
+		mBXBtn = (Button) findViewById(R.id.HIF_KZ_bingxiang_btn);
+		mKTBtn = (Button) findViewById(R.id.HIF_KZ_kongtiao_btn);
+		mMQBtn = (Button) findViewById(R.id.HIT_KZ_meiqi_btn);
+		
+		mBXBtn.setOnClickListener(this);
+		mKTBtn.setOnClickListener(this);
+		mMQBtn.setOnClickListener(this);
+		
+		mCreateBtn = (ImageButton)findViewById(R.id.layout_HIF_setting);
 		mCreateBtn.setOnClickListener(this);
 	}
 	
 	@Override
 	public void onClick(View v) {
+
+		System.out.println("come in the case 0");
 		switch (v.getId()) {
 		case R.id.home_reback_btn:
+			System.out.println("come in the case reback");
 			finish();
 			break;
-		case R.id.layout_home_info_setting:
+		case R.id.layout_HIF_setting:
 			// TODO 后续添加
 			showTips(R.drawable.tips_error, "什么都木有......");
+			break;
+		case R.id.HIF_KZ_bingxiang_btn:
+			System.out.println("come in the case 1");
+			MiPushClient.subscribe(getApplicationContext(), "herotculb", null);
+			//MiPushClient.setAlias(getApplicationContext(), userNameStr, null);
+			System.out.println("come in the case 2");
+			View view = findViewById(R.id.HIF_KZ_bingxiang_btn);
+			// 数组长度必须为2
+			int[] locations = new int[2];
+			view.getLocationOnScreen(locations);
+			System.out.println("come in the case 3");
+			int x = locations[0];// 获取组件当前位置的横坐标
+			int y = locations[1];// 获取组件当前位置的纵坐标
+			Log.i("System.out", "x:" + x + "y:" + y);
+			System.out.println("----------" + x + "---------" + y);
+			uploadImage(HomeInfoKongzhiAcitvity.this, y + 60);
 			break;
 		default:
 			break;
 		}
 	}
+	public void uploadImage(final Activity context, int y) {
+		menuWindow = new KzFreezerPopWin(HomeInfoKongzhiAcitvity.this,
+				itemsOnClick);
+		// 显示窗口
+		menuWindow.showAtLocation(
+				HomeInfoKongzhiAcitvity.this.findViewById(R.id.HIF_KZ_bingxiang_btn),
+				Gravity.TOP | Gravity.RIGHT, 0, y); // 设置layout在PopupWindow中显示的位置
+	}
 
+	// 为弹出窗口实现监听类
+	private OnClickListener itemsOnClick = new OnClickListener() {
+
+		public void onClick(View v) {
+			menuWindow.dismiss();
+		}
+	};
 	
 	/**
 	 * 自定义toast

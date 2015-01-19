@@ -172,14 +172,15 @@ public class MessagesActivity extends FragmentActivity implements
 			menuWindow.dismiss();
 		}
 	};
-	
+	// TODO dwz
+	/*
 	@Override
 	public void onBackPressed() {
 		Intent intent = new Intent(MessagesActivity.this, SignOutActivity.class);
 		startActivityForResult(intent, 1);
 
 	}
-
+*/
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);

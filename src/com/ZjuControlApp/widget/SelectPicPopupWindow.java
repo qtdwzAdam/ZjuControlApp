@@ -40,44 +40,44 @@ public class SelectPicPopupWindow extends PopupWindow {
 		//个人资料
 		linear_ziliao = (LinearLayout) mMenuView.findViewById(R.id.linear_ziliao);
 		linear_ziliao.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(context,ProfileActivity.class);
 				context.startActivity(intent);
 				dismiss();
-				
+
 			}
 		});
-		
+
 		int h = context.getWindowManager().getDefaultDisplay().getHeight();
 		int w = context.getWindowManager().getDefaultDisplay().getWidth();
-		
+
 		//意见反馈
 		linear_yijian_fankui = (LinearLayout) mMenuView.findViewById(R.id.linear_yijian_fankui);
 		linear_yijian_fankui.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(context,FeekBackActivity.class);
 				context.startActivity(intent);
 				dismiss();
-				
+
 			}
 		});
-		
-		
+
+
 		//设置按钮
 		linear_setting = (LinearLayout) mMenuView.findViewById(R.id.linear_setting);
 		linear_setting.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				System.out.println("-----------------"+MessagesActivity.userNameStr);
 				Intent intent = new Intent(context,SettingActivity.class);
 				context.startActivity(intent);
 				dismiss();
-				
+
 			}
 		});
 		//取消按钮
@@ -92,20 +92,20 @@ public class SelectPicPopupWindow extends PopupWindow {
 				.setPositiveButton("确定",
 						new DialogInterface.OnClickListener() {
 							@Override
-							public void onClick(DialogInterface dialog,int which) 
-							{			
+							public void onClick(DialogInterface dialog,int which)
+							{
 								//退出登录
 								KFIMInterfaces.Logout(context);
 								Intent intent = new Intent(context,SignInActivity.class);
 								context.startActivity(intent);
 								context.finish();
 								dismiss();
-								
+
 							}
 						}).setNegativeButton("取消", null).create()
 				.show();
-				
-				
+
+
 			}
 		});
 		//设置按钮监听
@@ -125,16 +125,16 @@ public class SelectPicPopupWindow extends PopupWindow {
 		this.setBackgroundDrawable(dw);
 		//mMenuView添加OnTouchListener监听判断获取触屏位置如果在选择框外面则销毁弹出框
 		mMenuView.setOnTouchListener(new OnTouchListener() {
-			
+
 			public boolean onTouch(View v, MotionEvent event) {
-				
+
 				int height = mMenuView.findViewById(R.id.pop_layout).getTop();
 				int y=(int) event.getY();
 				if(event.getAction()==MotionEvent.ACTION_UP){
 					if(y<height){
 						dismiss();
 					}
-				}				
+				}
 				return true;
 			}
 		});
