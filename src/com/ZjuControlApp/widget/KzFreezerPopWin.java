@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,7 +30,6 @@ import com.tencent.weibo.oauthv2.OAuthV2;
 
 public class KzFreezerPopWin extends PopupWindow {
 
-
 	private View mMenuView;
 	Button linear_setting,linear_tuichu;
 
@@ -48,9 +48,8 @@ public class KzFreezerPopWin extends PopupWindow {
 
 			@Override
 			public void onClick(View v) {
-				System.out.println("-----------------"+MessagesActivity.userNameStr);
-				Intent intent = new Intent(context,SettingActivity.class);
-				context.startActivity(intent);
+				
+				// TODO dwz
 				dismiss();
 
 			}
@@ -60,34 +59,14 @@ public class KzFreezerPopWin extends PopupWindow {
 		linear_tuichu.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				//销毁弹出框
-				SaveDate.saveDate(context, new OAuthV2());
-				new AlertDialog.Builder(context)
-				.setMessage("确认退出登录?")
-				.setPositiveButton("确定",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,int which)
-							{
-								//退出登录
-								KFIMInterfaces.Logout(context);
-								Intent intent = new Intent(context,SignInActivity.class);
-								context.startActivity(intent);
-								context.finish();
-								dismiss();
-
-							}
-						}).setNegativeButton("取消", null).create()
-				.show();
-
-
+				dismiss();
 			}
 		});
 		//设置按钮监听
 		//设置SelectPicPopupWindow的View
 		this.setContentView(mMenuView);
 		//设置SelectPicPopupWindow弹出窗体的宽
-		this.setWidth(w/2);
+		this.setWidth(w);
 		//设置SelectPicPopupWindow弹出窗体的高
 		this.setHeight(LayoutParams.WRAP_CONTENT);
 		//设置SelectPicPopupWindow弹出窗体可点击
@@ -115,6 +94,4 @@ public class KzFreezerPopWin extends PopupWindow {
 		});
 
 	}
-
-
 }

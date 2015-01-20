@@ -8,13 +8,13 @@
         android:id="@+id/hif_kz_freezer_set_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
+        android:background="#000000"
         android:gravity="center_vertical"
         android:orientation="vertical"  >
 		<LinearLayout
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:background="#ffffff"
+	        android:background="#000000"
 	        android:gravity="center_vertical"
 	        android:orientation="horizontal"   
 	        android:padding="20dp" >
@@ -24,6 +24,7 @@
 	            android:background="#0000"      
 	            android:layout_marginLeft="30dp"
 	       		android:textSize="20sp"
+	       		android:textColor="#ffffff"
 	            android:text="设定温度" />
 	        <EditText
 	            android:id="@+id/HIF_bingxiang_set_num"
@@ -41,7 +42,7 @@
 	       android:id="@+id/HIF_KZ_bingxiang_set"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:background="#ffffff"
+	        android:background="#000000"
 	        android:gravity="center_vertical"
 	        android:orientation="horizontal"   
 	        android:padding="20dp" >

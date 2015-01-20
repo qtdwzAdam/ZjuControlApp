@@ -60,8 +60,9 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 	
 	@Override
 	public void onClick(View v) {
-
-		System.out.println("come in the case 0");
+		int x,y;
+		View view;
+		int locations[] ;
 		switch (v.getId()) {
 		case R.id.home_reback_btn:
 			System.out.println("come in the case reback");
@@ -72,32 +73,49 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 			showTips(R.drawable.tips_error, "什么都木有......");
 			break;
 		case R.id.HIF_KZ_bingxiang_btn:
-			System.out.println("come in the case 1");
 			MiPushClient.subscribe(getApplicationContext(), "herotculb", null);
-			//MiPushClient.setAlias(getApplicationContext(), userNameStr, null);
-			System.out.println("come in the case 2");
-			View view = findViewById(R.id.HIF_KZ_bingxiang_btn);
-			// 数组长度必须为2
-			int[] locations = new int[2];
+			view = findViewById(R.id.HIF_KZ_bingxiang_btn);
+			locations = new int[2];
 			view.getLocationOnScreen(locations);
-			System.out.println("come in the case 3");
-			int x = locations[0];// 获取组件当前位置的横坐标
-			int y = locations[1];// 获取组件当前位置的纵坐标
+			x = locations[0];// 获取组件当前位置的横坐标
+			y = locations[1];// 获取组件当前位置的纵坐标
 			Log.i("System.out", "x:" + x + "y:" + y);
 			System.out.println("----------" + x + "---------" + y);
-			uploadImage(HomeInfoKongzhiAcitvity.this, y + 60);
+			uploadImage(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIF_KZ_bingxiang_btn);
+			break;
+		case R.id.HIF_KZ_kongtiao_btn:
+			MiPushClient.subscribe(getApplicationContext(), "herotculb", null);
+			view = findViewById(R.id.HIF_KZ_kongtiao_btn);
+			locations = new int[2];
+			view.getLocationOnScreen(locations);
+			x = locations[0];// 获取组件当前位置的横坐标
+			y = locations[1];// 获取组件当前位置的纵坐标
+			Log.i("System.out", "x:" + x + "y:" + y);
+			System.out.println("----------" + x + "---------" + y);
+			uploadImage(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIF_KZ_kongtiao_btn);
+			break;
+		case R.id.HIT_KZ_meiqi_btn:
+			MiPushClient.subscribe(getApplicationContext(), "herotculb", null);
+			view = findViewById(R.id.HIT_KZ_meiqi_btn);
+			locations = new int[2];
+			view.getLocationOnScreen(locations);
+			x = locations[0];// 获取组件当前位置的横坐标
+			y = locations[1];// 获取组件当前位置的纵坐标
+			Log.i("System.out", "x:" + x + "y:" + y);
+			System.out.println("----------" + x + "---------" + y);
+			uploadImage(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIT_KZ_meiqi_btn);
 			break;
 		default:
 			break;
 		}
 	}
-	public void uploadImage(final Activity context, int y) {
+	public void uploadImage(final Activity context, int y, int id) {
 		menuWindow = new KzFreezerPopWin(HomeInfoKongzhiAcitvity.this,
 				itemsOnClick);
 		// 显示窗口
 		menuWindow.showAtLocation(
-				HomeInfoKongzhiAcitvity.this.findViewById(R.id.HIF_KZ_bingxiang_btn),
-				Gravity.TOP | Gravity.RIGHT, 0, y); // 设置layout在PopupWindow中显示的位置
+				HomeInfoKongzhiAcitvity.this.findViewById(id),
+				Gravity.TOP | Gravity.LEFT, 0, y); // 设置layout在PopupWindow中显示的位置
 	}
 
 	// 为弹出窗口实现监听类
