@@ -3,12 +3,6 @@ package com.ZjuControlApp.activity.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jivesoftware.smack.util.StringUtils;
-
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,19 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import com.appkefu.lib.interfaces.KFIMInterfaces;
-import com.appkefu.lib.service.KFMainService;
-import com.appkefu.lib.ui.activity.KFSubscribeNotificationActivity;
+
 import com.appkefu.lib.ui.entity.KFRosterEntity;
-import com.appkefu.lib.utils.KFSLog;
-import com.appkefu.lib.xmpp.XmppFriend;
 import com.herotculb.qunhaichat.R;
-import com.ZjuControlApp.activity.AddUserActivity;
+import com.ZjuControlApp.adapter.RefreshableView;
+import com.ZjuControlApp.adapter.RefreshableView.PullToRefreshListener;
 import com.ZjuControlApp.adapter.RosterListViewAdapter;
 
 // frame two indeed
 public class OneFragment extends Fragment {
 	private ListView mListView;
+
+	RefreshableView refreshableView;
 	private List<KFRosterEntity> mRosterList = new ArrayList<KFRosterEntity>();
 	private RosterListViewAdapter mRosterAdapter;
 	LinearLayout linear_tianjia, linear_yanzheng;
@@ -38,8 +31,19 @@ public class OneFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.fragment_one, container, false);
+		refreshableView = (RefreshableView) view.findViewById(R.id.refreshable_view_frame_one);
 		
-		
+		refreshableView.setOnRefreshListener(new PullToRefreshListener() {
+			@Override
+			public void onRefresh() {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				refreshableView.finishRefreshing();
+			}
+		}, 0);
 		return view;
 	}
 

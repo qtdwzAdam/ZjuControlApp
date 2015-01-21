@@ -5,16 +5,22 @@
     android:orientation="vertical"
     tools:context="com.herotculb.fragmentdemo.MainActivity$PlaceholderFragment" >
 
-    <include layout="@layout/layout_line1" />
-
-    <include layout="@layout/layout_line1" />
-
-    <ListView
-        android:id="@+id/roster_listView"
+    
+    <com.ZjuControlApp.adapter.RefreshableView
+        android:id="@+id/refreshable_view_frame_one"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:cacheColorHint="#ffffff"
-        android:divider="@null" >
-    </ListView>
+        >
+        <ListView
+            android:id="@+id/list_view_fram_one"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="none" >
+        </ListView>
+    </com.ZjuControlApp.adapter.RefreshableView>
+    
+    <include layout="@layout/layout_line1" />
+
+
 
 </LinearLayout>
