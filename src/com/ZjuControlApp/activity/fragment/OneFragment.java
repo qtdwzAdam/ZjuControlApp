@@ -1,49 +1,39 @@
 package com.ZjuControlApp.activity.fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
-import com.appkefu.lib.ui.entity.KFRosterEntity;
 import com.herotculb.qunhaichat.R;
-import com.ZjuControlApp.adapter.RefreshableView;
-import com.ZjuControlApp.adapter.RefreshableView.PullToRefreshListener;
-import com.ZjuControlApp.adapter.RosterListViewAdapter;
 
 // frame two indeed
-public class OneFragment extends Fragment {
-	private ListView mListView;
+public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, android.view.View.OnClickListener{
 
-	RefreshableView refreshableView;
-	private List<KFRosterEntity> mRosterList = new ArrayList<KFRosterEntity>();
-	private RosterListViewAdapter mRosterAdapter;
-	LinearLayout linear_tianjia, linear_yanzheng;
-
+	private SwipeRefreshLayout mSwipeLayout;
+	private LinearLayout mainLayout;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.fragment_one, container, false);
-		refreshableView = (RefreshableView) view.findViewById(R.id.refreshable_view_frame_one);
+
 		
-		refreshableView.setOnRefreshListener(new PullToRefreshListener() {
-			@Override
-			public void onRefresh() {
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				refreshableView.finishRefreshing();
-			}
-		}, 0);
+		mainLayout = (LinearLayout) view.findViewById(R.id.inner_image_layout);
+		
+		mainLayout.setOnClickListener(this);
+		
+		mSwipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.inner_image_refresh);
+		mSwipeLayout.setOnRefreshListener(this);
+		mSwipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+				android.R.color.holo_green_light, android.R.color.holo_orange_light,
+				android.R.color.holo_red_light);
 		return view;
 	}
 
@@ -67,5 +57,20 @@ public class OneFragment extends Fragment {
 		super.onStop();
 
 	}
+	@Override
+	public void onRefresh() {
+		// TODO Auto-generated method stub
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				mSwipeLayout.setRefreshing(false);
+			}
+		}, 5000);
+	}
 
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -22,8 +22,6 @@ import com.ZjuControlApp.activity.fragment.OneFragment;
 import com.ZjuControlApp.activity.fragment.ThreeFragment;
 import com.ZjuControlApp.activity.fragment.TwoFragment;
 import com.ZjuControlApp.adapter.FragmentViewPagerAdapter;
-import com.ZjuControlApp.adapter.RefreshableView;
-import com.ZjuControlApp.adapter.RefreshableView.PullToRefreshListener;
 import com.ZjuControlApp.widget.SelectPicPopupWindow;
 import com.herotculb.qunhaichat.R;
 import com.xiaomi.mipush.sdk.MiPushClient;
@@ -31,8 +29,6 @@ import com.xiaomi.mipush.sdk.MiPushClient;
 public class MessagesActivity extends FragmentActivity implements
 		OnClickListener {
 
-	RefreshableView refreshableView;
-	
 	private ViewPager mPager = null;// tab pager
 	private ArrayList<Fragment> fragmentList;
 	TextView text_one, text_two, text_three;
@@ -88,21 +84,6 @@ public class MessagesActivity extends FragmentActivity implements
 				setBackground(i);
 			}
 		});
-		
-		/*refreshableView = (RefreshableView) findViewById(R.id.refreshable_view_frame_one);
-		
-		refreshableView.setOnRefreshListener(new PullToRefreshListener() {
-			@Override
-			public void onRefresh() {
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				refreshableView.finishRefreshing();
-			}
-		}, 0);
-*/
 	}
 
 	public boolean onTouchEvent(MotionEvent event) {

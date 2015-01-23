@@ -1,26 +1,21 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inner_image_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.herotculb.fragmentdemo.MainActivity$PlaceholderFragment" >
 
-    
-    <com.ZjuControlApp.adapter.RefreshableView
-        android:id="@+id/refreshable_view_frame_one"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        >
-        <ListView
-            android:id="@+id/list_view_fram_one"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:scrollbars="none" >
-        </ListView>
-    </com.ZjuControlApp.adapter.RefreshableView>
-    
-    <include layout="@layout/layout_line1" />
+   	<LinearLayout
+   	    android:id="@+id/inner_image_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:padding="10dp" >
 
-
+	    <include layout="@layout/layout_line1" />
 
 </LinearLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>
