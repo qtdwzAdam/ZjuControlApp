@@ -10,8 +10,10 @@ import android.view.View.OnClickListener;
 
 import com.herotculb.qunhaichat.R;
 import com.xiaomi.mipush.sdk.MiPushClient;
-import com.ZjuControlApp.widget.KzFreezerPopWin;
 import com.ZjuControlApp.widget.TipsToast;
+import com.ZjuControlApp.widget.popwin.KzAirConditionerPopWin;
+import com.ZjuControlApp.widget.popwin.KzFreezerPopWin;
+import com.ZjuControlApp.widget.popwin.KzGasStatePopWin;
 
 import android.app.Activity;
 import android.os.Build;
@@ -31,12 +33,15 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 	private Button mMQBtn;
 
 	// 自定义的弹出框类
-	private KzFreezerPopWin menuWindow; // 弹出框
+	private KzFreezerPopWin menuWinBX; 
+	private KzAirConditionerPopWin menuWinKT;
+	private KzGasStatePopWin menuWinMQ;
 	private static TipsToast tipsToast;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// main view here
 		setContentView(R.layout.layout_home_info_kongzhi);
 		
 		mBackBtn = (Button)findViewById(R.id.home_reback_btn);
@@ -81,7 +86,7 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 			y = locations[1];// 获取组件当前位置的纵坐标
 			Log.i("System.out", "x:" + x + "y:" + y);
 			System.out.println("----------" + x + "---------" + y);
-			uploadImage(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIF_KZ_bingxiang_btn);
+			uploadImageBX(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIF_KZ_bingxiang_btn);
 			break;
 		case R.id.HIF_KZ_kongtiao_btn:
 			MiPushClient.subscribe(getApplicationContext(), "herotculb", null);
@@ -92,7 +97,7 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 			y = locations[1];// 获取组件当前位置的纵坐标
 			Log.i("System.out", "x:" + x + "y:" + y);
 			System.out.println("----------" + x + "---------" + y);
-			uploadImage(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIF_KZ_kongtiao_btn);
+			uploadImageKT(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIF_KZ_kongtiao_btn);
 			break;
 		case R.id.HIT_KZ_meiqi_btn:
 			MiPushClient.subscribe(getApplicationContext(), "herotculb", null);
@@ -103,26 +108,59 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 			y = locations[1];// 获取组件当前位置的纵坐标
 			Log.i("System.out", "x:" + x + "y:" + y);
 			System.out.println("----------" + x + "---------" + y);
-			uploadImage(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIT_KZ_meiqi_btn);
+			uploadImageMQ(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIT_KZ_meiqi_btn);
 			break;
 		default:
 			break;
 		}
 	}
-	public void uploadImage(final Activity context, int y, int id) {
-		menuWindow = new KzFreezerPopWin(HomeInfoKongzhiAcitvity.this,
-				itemsOnClick);
+	private void uploadImageBX(final Activity context, int y, int id) {
+		menuWinBX = new KzFreezerPopWin(HomeInfoKongzhiAcitvity.this,
+				itemsOnClickBX);
 		// 显示窗口
-		menuWindow.showAtLocation(
+		menuWinBX.showAtLocation(
 				HomeInfoKongzhiAcitvity.this.findViewById(id),
 				Gravity.TOP | Gravity.LEFT, 0, y); // 设置layout在PopupWindow中显示的位置
 	}
+	
+	private void uploadImageKT(final Activity context, int y, int id) {
+		menuWinKT = new KzAirConditionerPopWin(HomeInfoKongzhiAcitvity.this,
+				itemsOnClickKT);
+		// 显示窗口
+		menuWinKT.showAtLocation(
+				HomeInfoKongzhiAcitvity.this.findViewById(id),
+				Gravity.TOP | Gravity.LEFT, 0, y); // 设置layout在PopupWindow中显示的位置
+	}
+	
+	private void uploadImageMQ(final Activity context, int y, int id) {
+		menuWinMQ = new KzGasStatePopWin(HomeInfoKongzhiAcitvity.this,
+				itemsOnClickMQ);
+		// 显示窗口
+		menuWinMQ.showAtLocation(
+				HomeInfoKongzhiAcitvity.this.findViewById(id),
+				Gravity.TOP | Gravity.LEFT, 0, y); // 设置layout在PopupWindow中显示的位置
+	}
+	
 
 	// 为弹出窗口实现监听类
-	private OnClickListener itemsOnClick = new OnClickListener() {
+	private OnClickListener itemsOnClickBX = new OnClickListener() {
 
 		public void onClick(View v) {
-			menuWindow.dismiss();
+			menuWinBX.dismiss();
+		}
+	};
+	// 为弹出窗口实现监听类
+	private OnClickListener itemsOnClickKT = new OnClickListener() {
+
+		public void onClick(View v) {
+			menuWinKT.dismiss();
+		}
+	};
+	// 为弹出窗口实现监听类
+	private OnClickListener itemsOnClickMQ = new OnClickListener() {
+
+		public void onClick(View v) {
+			menuWinMQ.dismiss();
 		}
 	};
 	

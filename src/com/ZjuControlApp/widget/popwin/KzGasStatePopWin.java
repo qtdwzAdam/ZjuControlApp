@@ -1,4 +1,4 @@
-package com.ZjuControlApp.widget;
+package com.ZjuControlApp.widget.popwin;
 
 
 import android.app.Activity;
@@ -28,22 +28,22 @@ import com.appkefu.lib.interfaces.KFIMInterfaces;
 import com.herotculb.qunhaichat.R;
 import com.tencent.weibo.oauthv2.OAuthV2;
 
-public class KzFreezerPopWin extends PopupWindow {
+public class KzGasStatePopWin extends PopupWindow {
 
 	private View mMenuView;
 	Button linear_setting,linear_tuichu;
 
-	public KzFreezerPopWin(final Activity context,OnClickListener itemsOnClick) {
+	public KzGasStatePopWin(final Activity context,OnClickListener itemsOnClick) {
 		super(context);
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		mMenuView = inflater.inflate(R.layout.hif_kz_freezer, null);
+		mMenuView = inflater.inflate(R.layout.hif_kz_gasstate, null);
 
 		int h = context.getWindowManager().getDefaultDisplay().getHeight();
 		int w = context.getWindowManager().getDefaultDisplay().getWidth();
 
 		//设置按钮
-		linear_setting = (Button) mMenuView.findViewById(R.id.HIF_KZ_bingxiang_set_btn);
+		linear_setting = (Button) mMenuView.findViewById(R.id.HIF_KZ_gasstate_btn);
 		linear_setting.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -54,14 +54,8 @@ public class KzFreezerPopWin extends PopupWindow {
 
 			}
 		});
-		//取消按钮
-		linear_tuichu = (Button) mMenuView.findViewById(R.id.HIF_KZ_bingxiang_cancel_btn);
-		linear_tuichu.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				dismiss();
-			}
-		});
+		
 		//设置按钮监听
 		//设置SelectPicPopupWindow的View
 		this.setContentView(mMenuView);
@@ -82,7 +76,7 @@ public class KzFreezerPopWin extends PopupWindow {
 
 			public boolean onTouch(View v, MotionEvent event) {
 
-				int height = mMenuView.findViewById(R.id.hif_kz_freezer_set_main).getTop();
+				int height = mMenuView.findViewById(R.id.hif_kz_gasstate_set_main).getTop();
 				int y=(int) event.getY();
 				if(event.getAction()==MotionEvent.ACTION_UP){
 					if(y<height){
