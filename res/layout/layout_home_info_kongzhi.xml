@@ -1,64 +1,64 @@
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+﻿<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_container_hif_kz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
     android:background="#ffffff"
     tools:context="com.herotculb.fragmentdemo.MainActivity$PlaceholderFragment" >
 
-	<LinearLayout
-        android:id="@+id/HIF_KZ_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:orientation="vertical">
-	    <RelativeLayout
-	        android:id="@+id/layout_HIF_main"
-	        android:layout_width="fill_parent"
-	        android:layout_height="45dp"
-	        android:background="@drawable/mmtitle_bg" >
-	        <Button
-	            android:id="@+id/home_reback_btn"
-	            android:layout_width="70dp"
-	            android:layout_height="wrap_content"
-	            android:layout_centerVertical="true"
-	            android:background="@drawable/app_title_btn_back"
-	            android:text="@string/appkefu_back"
-	            android:textColor="#fff"
-	            android:textSize="14sp" />
-	        <TextView
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_centerInParent="true"
-	            android:text="控制中心"
-	            android:textColor="#ffffff"
-	            android:textSize="20sp"
-	            android:textStyle="bold" />
-	        <ImageButton
-	            android:id="@+id/layout_HIF_setting"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentRight="true"
-	            android:layout_centerVertical="true"
-	            android:layout_marginRight="10dp"
-	            android:background="#0000"
-	            android:onClick="click"
-	            android:src="@drawable/abc_ic_menu_moreoverflow_normal_holo_light" />
-	    </RelativeLayout>
-		<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/layout_HIF_main"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/mmtitle_bg" >
+        <Button
+            android:id="@+id/home_reback_btn"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/app_title_btn_back"
+            android:text="@string/appkefu_back"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="控制中心"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <ImageButton
+            android:id="@+id/layout_HIF_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="#0000"
+            android:onClick="click"
+            android:src="@drawable/abc_ic_menu_moreoverflow_normal_holo_light" />
+    </RelativeLayout>
+	<android.support.v4.widget.SwipeRefreshLayout
+	   android:id="@+id/swipe_container_hif_kz"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="#ffffff"
+       android:orientation="vertical">
+       <LinearLayout
+			android:id="@+id/HIF_KZ_main_layout"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:background="#ffffff"
+	        android:orientation="vertical">
 		    <!--  details !!!  -->
 		   	<LinearLayout
-		       android:id="@+id/HIF_KZ_bingxiang"
-		        android:layout_width="match_parent"
+	   	    	android:id="@+id/HIF_KZ_bingxiang"
+		       	android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:background="#ffffff"
 		        android:gravity="center_vertical"
-		        android:orientation="horizontal"   
+		        android:orientation="horizontal"  
 		        android:padding="20dp" >
 		        <TextView
 		            android:layout_width="wrap_content"
@@ -156,6 +156,6 @@
 		            android:textColor="#ffffff"
 		            android:textSize="18sp" />
 		    </LinearLayout>
-		</LinearLayout>
-	</LinearLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
+	    </LinearLayout>
+	</android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

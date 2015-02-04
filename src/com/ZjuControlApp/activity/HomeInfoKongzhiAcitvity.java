@@ -73,7 +73,7 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 		mCreateBtn = (ImageButton) findViewById(R.id.layout_HIF_setting);
 		mCreateBtn.setOnClickListener(this);
 		
-		mainLayout = (LinearLayout) findViewById(R.id.HIF_KZ_layout);
+		mainLayout = (LinearLayout) findViewById(R.id.HIF_KZ_main_layout);
 		
 		mainLayout.setOnClickListener(this);
 	}
