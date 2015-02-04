@@ -1,12 +1,14 @@
 package com.ZjuControlApp.activity;
 
 
-
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.herotculb.qunhaichat.R;
 import com.xiaomi.mipush.sdk.MiPushClient;
@@ -19,10 +21,12 @@ import android.app.Activity;
 import android.os.Build;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener{
+public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener, SwipeRefreshLayout.OnRefreshListener{
 
+	private SwipeRefreshLayout mSwipeLayout;
 	private Button mBackBtn;
 	private TextView mUserBingxiang;
 	private TextView mUserKongtiao;
@@ -31,6 +35,7 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 	private Button mBXBtn;
 	private Button mKTBtn;
 	private Button mMQBtn;
+	private LinearLayout mainLayout;
 
 	// 自定义的弹出框类
 	private KzFreezerPopWin menuWinBX; 
@@ -43,6 +48,12 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 		super.onCreate(savedInstanceState);
 		// main view here
 		setContentView(R.layout.layout_home_info_kongzhi);
+		
+		mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container_hif_kz);
+		mSwipeLayout.setOnRefreshListener(this);
+		mSwipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+				android.R.color.holo_green_light, android.R.color.holo_orange_light,
+				android.R.color.holo_red_light);
 		
 		mBackBtn = (Button)findViewById(R.id.home_reback_btn);
 		mBackBtn.setOnClickListener(this);
@@ -59,8 +70,12 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 		mKTBtn.setOnClickListener(this);
 		mMQBtn.setOnClickListener(this);
 		
-		mCreateBtn = (ImageButton)findViewById(R.id.layout_HIF_setting);
+		mCreateBtn = (ImageButton) findViewById(R.id.layout_HIF_setting);
 		mCreateBtn.setOnClickListener(this);
+		
+		mainLayout = (LinearLayout) findViewById(R.id.HIF_KZ_layout);
+		
+		mainLayout.setOnClickListener(this);
 	}
 	
 	@Override
@@ -186,5 +201,17 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 		tipsToast.show();
 		tipsToast.setIcon(iconResId);
 		tipsToast.setText(tips);
+	}
+
+	@Override
+	public void onRefresh() {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				mSwipeLayout.setRefreshing(false);
+			}
+		}, 5000);
 	}
 }

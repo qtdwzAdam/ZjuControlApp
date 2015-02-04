@@ -50,7 +50,7 @@ public class KzGasStatePopWin extends PopupWindow {
 			public void onClick(View v) {
 				
 				// TODO dwz
-				dismiss();
+				// dismiss();
 
 			}
 		});
