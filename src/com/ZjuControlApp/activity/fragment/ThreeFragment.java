@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.ZjuControlApp.activity.HomeInfoInnerAcitvity;
 import com.ZjuControlApp.activity.HomeInfoKongzhiAcitvity;
 import com.herotculb.qunhaichat.R;
 
@@ -18,6 +19,7 @@ public class ThreeFragment extends Fragment implements OnClickListener, SwipeRef
 
 	private SwipeRefreshLayout mSwipeLayout;
 	private LinearLayout kongzhi, mainLayout;
+	private LinearLayout innerEnv, outerEnv;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -30,9 +32,13 @@ public class ThreeFragment extends Fragment implements OnClickListener, SwipeRef
 				android.R.color.holo_red_light);
 		
 		kongzhi = (LinearLayout) view.findViewById(R.id.home_info_kongzhi);
+		innerEnv = (LinearLayout) view.findViewById(R.id.home_info_inner);
+		outerEnv = (LinearLayout) view.findViewById(R.id.home_info_outer);
 		mainLayout = (LinearLayout) view.findViewById(R.id.home_info_layout);
 		
 		kongzhi.setOnClickListener(this);
+		innerEnv.setOnClickListener(this);
+		outerEnv.setOnClickListener(this);
 		mainLayout.setOnClickListener(this);
 		
 		return view;
@@ -64,6 +70,11 @@ public class ThreeFragment extends Fragment implements OnClickListener, SwipeRef
 			intent = new Intent(getActivity(), HomeInfoKongzhiAcitvity.class);
 			startActivity(intent);
 			break;
+		case R.id.home_info_inner:
+			intent = new Intent(getActivity(), HomeInfoInnerAcitvity.class);
+			startActivity(intent);
+			break;
+			
 
 		default:
 			break;

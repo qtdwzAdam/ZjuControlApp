@@ -7,12 +7,12 @@
     tools:context="com.herotculb.fragmentdemo.MainActivity$PlaceholderFragment" >
 
     <RelativeLayout
-        android:id="@+id/layout_HIF_main"
+        android:id="@+id/layout_HIF_KZ_main"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:background="@drawable/mmtitle_bg" >
         <Button
-            android:id="@+id/home_reback_btn"
+            android:id="@+id/home_KZ_reback_btn"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -29,7 +29,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
         <ImageButton
-            android:id="@+id/layout_HIF_setting"
+            android:id="@+id/layout_HIF_KZ_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -79,7 +79,6 @@
 		            android:id="@+id/HIF_KZ_bingxiang_btn"
 		            android:layout_width="80dp"
 		            android:layout_height="32dp"
-		            android:layout_alignParentRight="true"
 		            android:layout_marginLeft="18dp"
 		            android:background="@drawable/btn_denglu"
 		            android:text="设置"
@@ -114,7 +113,6 @@
 		            android:id="@+id/HIF_KZ_kongtiao_btn"
 		            android:layout_width="80dp"
 		            android:layout_height="32dp"
-		            android:layout_alignParentRight="true"
 		            android:layout_marginLeft="18dp"
 		            android:background="@drawable/btn_denglu"
 		            android:text="设置"
@@ -149,7 +147,6 @@
 		            android:id="@+id/HIT_KZ_meiqi_btn"
 		            android:layout_width="80dp"
 		            android:layout_height="32dp"
-		            android:layout_alignParentRight="true"
 		            android:layout_marginLeft="18dp"
 		            android:background="@drawable/btn_denglu"
 		            android:text="设置"

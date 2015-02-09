@@ -223,6 +223,11 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
+            android:name="com.ZjuControlApp.activity.HomeInfoInnerAcitvity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
             android:name="com.ZjuControlApp.activity.ProfileFriendActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar" >
