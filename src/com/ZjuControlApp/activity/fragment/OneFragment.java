@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 // frame two indeed
 public class OneFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, android.view.View.OnClickListener{

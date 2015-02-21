@@ -32,7 +32,7 @@ import android.view.View;
 
 import com.ZjuControlApp.ercode.CameraManager;
 import com.google.zxing.ResultPoint;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 @SuppressLint("DrawAllocation")
 public final class ErcodeScanView extends View {

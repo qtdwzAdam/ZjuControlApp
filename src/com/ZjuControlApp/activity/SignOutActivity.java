@@ -1,8 +1,8 @@
 package com.ZjuControlApp.activity;
 
-import com.herotculb.qunhaichat.R;
-import com.herotculb.qunhaichat.R.id;
-import com.herotculb.qunhaichat.R.layout;
+import com.ZjuControlApp.R;
+import com.ZjuControlApp.R.id;
+import com.ZjuControlApp.R.layout;
 
 import android.app.Activity;
 import android.content.Intent;

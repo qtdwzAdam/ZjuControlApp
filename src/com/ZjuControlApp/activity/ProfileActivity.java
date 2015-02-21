@@ -32,7 +32,7 @@ import com.appkefu.lib.utils.KFImageUtils;
 import com.appkefu.lib.utils.KFMediaUtils;
 import com.appkefu.lib.utils.KFSLog;
 import com.appkefu.lib.utils.KFUtils;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 /**
  * 

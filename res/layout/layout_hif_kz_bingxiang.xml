@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#ffffff"
+    tools:context="com.herotculb.fragmentdemo.MainActivity$PlaceholderFragment" >
+
+	<android.support.v4.widget.SwipeRefreshLayout
+	   android:id="@+id/swipe_container_hif_kz_bx"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="#ffffff"
+       android:orientation="vertical">
+       <LinearLayout
+			android:id="@+id/HIF_KZ_bx_main_layout"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:background="#ffffff"
+	        android:orientation="vertical">
+		    <!--  details !!!  -->
+		   	<LinearLayout
+	   	    	android:id="@+id/HIF_KZ_bingxiang"
+		       	android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:background="#ffffff"
+		        android:gravity="center_vertical"
+		        android:orientation="horizontal"  
+		        android:padding="20dp" >
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:background="#0000"      
+		       		android:layout_marginLeft="20dp"  
+		            android:text="冰箱温度" />
+		        <TextView
+		            android:id="@+id/HIF_bingxiang"
+		            android:layout_width="50dp"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="50dp"
+		            android:text="16"
+		            android:textColor="#000000"
+		            android:textSize="20sp"
+		            android:textStyle="bold|italic" />
+		        <Button
+		            android:id="@+id/HIF_KZ_bingxiang_btn"
+		            android:layout_width="80dp"
+		            android:layout_height="32dp"
+		            android:layout_alignParentRight="true"
+		            android:layout_marginLeft="18dp"
+		            android:background="@drawable/btn_denglu"
+		            android:text="设置"
+		            android:textColor="#ffffff"
+		            android:textSize="18sp" />
+		    </LinearLayout>
+		   	
+			<LinearLayout
+		       android:id="@+id/HIF_KZ_kongtiao"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:background="#ffffff"
+		        android:gravity="center_vertical"
+		        android:orientation="horizontal"  
+		        android:padding="20dp" >
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:background="#0000"
+		       		android:layout_marginLeft="20dp"  
+		            android:text="空调温度" />
+		        <TextView
+		            android:id="@+id/HIF_kongtiao"
+		            android:layout_width="50dp"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="50dp"
+		            android:text="16"
+		            android:textColor="#000000"
+		            android:textSize="20sp"
+		            android:textStyle="bold|italic" />
+		        <Button
+		            android:id="@+id/HIF_KZ_kongtiao_btn"
+		            android:layout_width="80dp"
+		            android:layout_height="32dp"
+		            android:layout_alignParentRight="true"
+		            android:layout_marginLeft="18dp"
+		            android:background="@drawable/btn_denglu"
+		            android:text="设置"
+		            android:textColor="#ffffff"
+		            android:textSize="18sp" />
+		    </LinearLayout>
+		    
+			<LinearLayout
+		       android:id="@+id/HIF_KZ_meiqi"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:background="#ffffff"
+		        android:gravity="center_vertical"
+		        android:orientation="horizontal"  
+		        android:padding="20dp" >
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:background="#0000"
+		       		android:layout_marginLeft="20dp"  
+		            android:text="煤气状态" />
+		        <TextView
+		            android:id="@+id/HIF_meiqi"
+		            android:layout_width="50dp"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="50dp"
+		            android:text="关闭"
+		            android:textColor="#000000"
+		            android:textSize="20sp"
+		            android:textStyle="bold|italic" />
+		        <Button
+		            android:id="@+id/HIT_KZ_meiqi_btn"
+		            android:layout_width="80dp"
+		            android:layout_height="32dp"
+		            android:layout_alignParentRight="true"
+		            android:layout_marginLeft="18dp"
+		            android:background="@drawable/btn_denglu"
+		            android:text="设置"
+		            android:textColor="#ffffff"
+		            android:textSize="18sp" />
+		    </LinearLayout>
+	    </LinearLayout>
+	</android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

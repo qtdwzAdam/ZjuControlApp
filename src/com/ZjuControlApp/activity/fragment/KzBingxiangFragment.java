@@ -1,5 +1,8 @@
 package com.ZjuControlApp.activity.fragment;
 
+import com.ZjuControlApp.activity.AddUserActivity;
+import com.ZjuControlApp.activity.UserInfoActivity;
+import com.ZjuControlApp.R;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,16 +11,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
-import com.ZjuControlApp.R;
-import com.ZjuControlApp.activity.AddUserActivity;
-import com.ZjuControlApp.activity.UserInfoActivity;
+public class KzBingxiangFragment extends Fragment implements OnClickListener, SwipeRefreshLayout.OnRefreshListener{
 
-// frame three indeed
-public class TwoFragment extends Fragment implements OnClickListener, SwipeRefreshLayout.OnRefreshListener{
 	LinearLayout linear_chuanjian,linear_jiaru, mainLayout;
 	private SwipeRefreshLayout mSwipeLayout;
 	@Override
@@ -60,6 +59,7 @@ public class TwoFragment extends Fragment implements OnClickListener, SwipeRefre
 		}
 		
 	}
+	
 	@Override
 	public void onRefresh() {
 		// TODO Auto-generated method stub

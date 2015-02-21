@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appkefu.lib.interfaces.KFIMInterfaces;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 /**
  * 

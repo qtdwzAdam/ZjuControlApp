@@ -21,7 +21,7 @@ import com.appkefu.lib.service.KFMainService;
 import com.appkefu.lib.service.KFSettingsManager;
 import com.appkefu.lib.service.KFXmppManager;
 import com.appkefu.lib.utils.KFSLog;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 /**
  * 

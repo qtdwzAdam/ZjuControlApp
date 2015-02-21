@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 /**
  * 自定义提示Toast

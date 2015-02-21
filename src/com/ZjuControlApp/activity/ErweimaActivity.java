@@ -22,7 +22,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 public class ErweimaActivity extends Activity {
 

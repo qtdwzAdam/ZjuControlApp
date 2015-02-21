@@ -28,7 +28,7 @@ import com.appkefu.lib.ui.entity.KFConversationEntity;
 import com.appkefu.lib.utils.KFImageUtils;
 import com.appkefu.lib.utils.KFSLog;
 import com.appkefu.lib.xmpp.XmppVCard;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 /**
  * 

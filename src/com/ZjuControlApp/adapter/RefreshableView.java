@@ -1,6 +1,6 @@
 package com.ZjuControlApp.adapter;
 
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 import android.content.Context;
 import android.content.SharedPreferences;

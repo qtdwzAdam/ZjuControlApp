@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.ZjuControlApp.activity.SignInActivity;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 public class MainActivity extends Activity {
 	private long splashDelay = 5000; //5 seconds

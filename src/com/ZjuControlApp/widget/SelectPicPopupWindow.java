@@ -23,7 +23,7 @@ import com.ZjuControlApp.activity.ProfileActivity;
 import com.ZjuControlApp.activity.SettingActivity;
 import com.ZjuControlApp.activity.SignInActivity;
 import com.appkefu.lib.interfaces.KFIMInterfaces;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 import com.tencent.weibo.oauthv2.OAuthV2;
 
 public class SelectPicPopupWindow extends PopupWindow {

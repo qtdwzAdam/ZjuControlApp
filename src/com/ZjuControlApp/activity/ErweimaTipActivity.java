@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 public class ErweimaTipActivity extends Activity {
 	TextView text_message;

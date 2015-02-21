@@ -11,7 +11,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.ZjuControlApp.widget.UISwitchButton;
 import com.appkefu.lib.service.KFSettingsManager;
 import com.appkefu.lib.utils.KFSettings;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 public class SettingActivity extends Activity {
 	private UISwitchButton switch1, switch2, switch3;

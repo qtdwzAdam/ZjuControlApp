@@ -23,7 +23,7 @@ import com.ZjuControlApp.activity.fragment.ThreeFragment;
 import com.ZjuControlApp.activity.fragment.TwoFragment;
 import com.ZjuControlApp.adapter.FragmentViewPagerAdapter;
 import com.ZjuControlApp.widget.SelectPicPopupWindow;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 public class MessagesActivity extends FragmentActivity implements

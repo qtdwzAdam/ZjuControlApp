@@ -30,7 +30,7 @@ import android.util.Log;
 import com.ZjuControlApp.activity.ErcodeScanActivity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 /**
  * This class handles all the messaging which comprises the state machine for

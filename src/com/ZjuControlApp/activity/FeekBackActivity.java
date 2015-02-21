@@ -21,7 +21,7 @@ import android.widget.EditText;
 
 import com.ZjuControlApp.widget.LoadingDialog;
 import com.ZjuControlApp.widget.TipsToast;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 public class FeekBackActivity extends Activity {
 	private Button btnClick, add_reback_btn;

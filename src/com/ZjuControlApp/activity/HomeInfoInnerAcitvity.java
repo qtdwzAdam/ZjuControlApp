@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.support.v4.widget.SwipeRefreshLayout;
 
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 import com.xiaomi.mipush.sdk.MiPushClient;
 import com.ZjuControlApp.widget.TipsToast;
 import com.ZjuControlApp.widget.popwin.KzAirConditionerPopWin;

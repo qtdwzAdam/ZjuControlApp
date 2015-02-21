@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 
 import com.ZjuControlApp.activity.HomeInfoInnerAcitvity;
 import com.ZjuControlApp.activity.HomeInfoKongzhiAcitvity;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 public class ThreeFragment extends Fragment implements OnClickListener, SwipeRefreshLayout.OnRefreshListener{
 
@@ -74,7 +74,6 @@ public class ThreeFragment extends Fragment implements OnClickListener, SwipeRef
 			intent = new Intent(getActivity(), HomeInfoInnerAcitvity.class);
 			startActivity(intent);
 			break;
-			
 
 		default:
 			break;

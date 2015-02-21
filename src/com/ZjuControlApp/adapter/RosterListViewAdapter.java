@@ -30,7 +30,7 @@ import com.appkefu.lib.ui.activity.KFChatActivity;
 import com.appkefu.lib.ui.entity.KFRosterEntity;
 import com.appkefu.lib.utils.KFImageUtils;
 import com.appkefu.lib.xmpp.XmppVCard;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 /**
  * 

@@ -15,7 +15,7 @@ import android.widget.Button;
 
 import com.ZjuControlApp.widget.LoadingDialog;
 import com.ZjuControlApp.widget.TipsToast;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 public class WebViewActivity extends Activity{
 	private WebView webView;

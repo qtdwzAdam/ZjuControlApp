@@ -1,8 +1,13 @@
 package com.ZjuControlApp.activity;
 
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.Gravity;
@@ -10,32 +15,40 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.support.v4.widget.SwipeRefreshLayout;
 
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 import com.xiaomi.mipush.sdk.MiPushClient;
+import com.ZjuControlApp.activity.fragment.OneFragment;
+import com.ZjuControlApp.activity.fragment.ThreeFragment;
+import com.ZjuControlApp.activity.fragment.ThreeFragmentKzBx;
+import com.ZjuControlApp.activity.fragment.TwoFragment;
+import com.ZjuControlApp.adapter.FragmentViewPagerAdapter;
 import com.ZjuControlApp.widget.TipsToast;
 import com.ZjuControlApp.widget.popwin.KzAirConditionerPopWin;
 import com.ZjuControlApp.widget.popwin.KzFreezerPopWin;
 import com.ZjuControlApp.widget.popwin.KzGasStatePopWin;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ListFragment;
+import android.graphics.Color;
 import android.os.Build;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener, SwipeRefreshLayout.OnRefreshListener{
+public class HomeInfoKongzhiAcitvity extends FragmentActivity implements OnClickListener{
 
+	private ViewPager mPager = null;// tab pager
+	private ArrayList<Fragment> fragmentList;
 	private SwipeRefreshLayout mSwipeLayout;
 	private Button mBackBtn;
-	private TextView mUserBingxiang;
-	private TextView mUserKongtiao;
-	private TextView mUserMeiqi;
+	TextView text_one, text_two, text_three, text_four;
+	ImageView image_one, image_two, image_three;
 	private ImageButton mCreateBtn;
-	private Button mBXBtn;
-	private Button mKTBtn;
-	private Button mMQBtn;
-	private LinearLayout mainLayout;
+
+	private ViewPager mainLayout;
 
 	// 自定义的弹出框类
 	private KzFreezerPopWin menuWinBX; 
@@ -43,39 +56,60 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 	private KzGasStatePopWin menuWinMQ;
 	private static TipsToast tipsToast;
 	
+	@SuppressLint("CutPasteId")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// main view here
 		setContentView(R.layout.layout_home_info_kongzhi);
 		
-		mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container_hif_kz);
-		mSwipeLayout.setOnRefreshListener(this);
-		mSwipeLayout.setColorScheme(android.R.color.holo_blue_bright,
-				android.R.color.holo_green_light, android.R.color.holo_orange_light,
-				android.R.color.holo_red_light);
-		
 		mBackBtn = (Button)findViewById(R.id.home_KZ_reback_btn);
 		mBackBtn.setOnClickListener(this);
 		
-		mUserBingxiang = (TextView)findViewById(R.id.HIF_bingxiang);
-		mUserKongtiao = (TextView)findViewById(R.id.HIF_kongtiao);
-		mUserMeiqi = (TextView)findViewById(R.id.HIF_meiqi);
-		
-		mBXBtn = (Button) findViewById(R.id.HIF_KZ_bingxiang_btn);
-		mKTBtn = (Button) findViewById(R.id.HIF_KZ_kongtiao_btn);
-		mMQBtn = (Button) findViewById(R.id.HIT_KZ_meiqi_btn);
-		
-		mBXBtn.setOnClickListener(this);
-		mKTBtn.setOnClickListener(this);
-		mMQBtn.setOnClickListener(this);
+		text_one = (TextView)findViewById(R.id.HIF_KZ_head_text_one);
+		text_two = (TextView)findViewById(R.id.HIF_KZ_head_text_two);
+		text_three = (TextView)findViewById(R.id.HIF_KZ_head_text_three);
+		text_four = (TextView)findViewById(R.id.HIF_KZ_head_text_four);
+
+		text_one.setOnClickListener(this);
+		text_two.setOnClickListener(this);
+		text_three.setOnClickListener(this);
+		text_four.setOnClickListener(this);
 		
 		mCreateBtn = (ImageButton) findViewById(R.id.layout_HIF_KZ_setting);
 		mCreateBtn.setOnClickListener(this);
 		
-		mainLayout = (LinearLayout) findViewById(R.id.HIF_KZ_main_layout);
+		mainLayout = (ViewPager) findViewById(R.id.HIF_KZ_main_layout);
 		
 		mainLayout.setOnClickListener(this);
+		
+		
+		mPager = (ViewPager) findViewById(R.id.HIF_KZ_main_layout);
+
+		fragmentList = new ArrayList<Fragment>();
+		
+		ThreeFragmentKzBx oneFragment = new ThreeFragmentKzBx();
+		TwoFragment twoFragment = new TwoFragment();
+		ThreeFragment threeFragment = new ThreeFragment();
+
+		fragmentList.add(0, oneFragment);
+		fragmentList.add(1, twoFragment);
+		fragmentList.add(2, threeFragment);
+
+		text_one.setOnClickListener(this);
+		text_two.setOnClickListener(this);
+		text_three.setOnClickListener(this);
+
+		setBackground(0);
+		FragmentViewPagerAdapter adapter = new FragmentViewPagerAdapter(
+				this.getSupportFragmentManager(), mPager, fragmentList);
+
+		adapter.setOnExtraPageChangeListener(new FragmentViewPagerAdapter.OnExtraPageChangeListener() {
+			@Override
+			public void onExtraPageSelected(int i) {
+				setBackground(i);
+			}
+		});
 	}
 	
 	@Override
@@ -85,49 +119,50 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 		int locations[] ;
 		switch (v.getId()) {
 		case R.id.home_KZ_reback_btn:
-			System.out.println("come in the case reback");
 			finish();
 			break;
 		case R.id.layout_HIF_KZ_setting:
 			// TODO 后续添加
 			showTips(R.drawable.tips_error, "什么都木有......");
 			break;
-		case R.id.HIF_KZ_bingxiang_btn:
-			MiPushClient.subscribe(getApplicationContext(), "herotculb", null);
-			view = findViewById(R.id.HIF_KZ_bingxiang_btn);
-			locations = new int[2];
-			view.getLocationOnScreen(locations);
-			x = locations[0];// 获取组件当前位置的横坐标
-			y = locations[1];// 获取组件当前位置的纵坐标
-			Log.i("System.out", "x:" + x + "y:" + y);
-			System.out.println("----------" + x + "---------" + y);
-			uploadImageBX(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIF_KZ_bingxiang_btn);
+		case R.id.HIF_KZ_head_text_one:
+			mPager.setCurrentItem(0);
 			break;
-		case R.id.HIF_KZ_kongtiao_btn:
-			MiPushClient.subscribe(getApplicationContext(), "herotculb", null);
-			view = findViewById(R.id.HIF_KZ_kongtiao_btn);
-			locations = new int[2];
-			view.getLocationOnScreen(locations);
-			x = locations[0];// 获取组件当前位置的横坐标
-			y = locations[1];// 获取组件当前位置的纵坐标
-			Log.i("System.out", "x:" + x + "y:" + y);
-			System.out.println("----------" + x + "---------" + y);
-			uploadImageKT(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIF_KZ_kongtiao_btn);
+		case R.id.HIF_KZ_head_text_two:
+			mPager.setCurrentItem(1);
 			break;
-		case R.id.HIT_KZ_meiqi_btn:
-			MiPushClient.subscribe(getApplicationContext(), "herotculb", null);
-			view = findViewById(R.id.HIT_KZ_meiqi_btn);
-			locations = new int[2];
-			view.getLocationOnScreen(locations);
-			x = locations[0];// 获取组件当前位置的横坐标
-			y = locations[1];// 获取组件当前位置的纵坐标
-			Log.i("System.out", "x:" + x + "y:" + y);
-			System.out.println("----------" + x + "---------" + y);
-			uploadImageMQ(HomeInfoKongzhiAcitvity.this, y + 70, R.id.HIT_KZ_meiqi_btn);
+		case R.id.HIF_KZ_head_text_three:
+			mPager.setCurrentItem(2);
+			break;
+		case R.id.HIF_KZ_head_text_four:
+			mPager.setCurrentItem(1);
 			break;
 		default:
 			break;
 		}
+	}
+	private void setBackground(int pos) {
+
+		text_one.setTextColor(Color.parseColor("#5B5B5B"));
+		text_two.setTextColor(Color.parseColor("#5B5B5B"));
+		text_three.setTextColor(Color.parseColor("#5B5B5B"));
+		text_four.setTextColor(Color.parseColor("#5B5B5B"));
+
+		switch (pos) {
+		case 0:
+			text_one.setTextColor(Color.parseColor("#45C01A"));
+			break;
+		case 1:
+			text_two.setTextColor(Color.parseColor("#45C01A"));
+			break;
+		case 2:
+			text_three.setTextColor(Color.parseColor("#45C01A"));
+			break;
+		case 3:
+			text_four.setTextColor(Color.parseColor("#45C01A"));
+			break;
+		}
+
 	}
 	private void uploadImageBX(final Activity context, int y, int id) {
 		menuWinBX = new KzFreezerPopWin(HomeInfoKongzhiAcitvity.this,
@@ -201,17 +236,5 @@ public class HomeInfoKongzhiAcitvity extends Activity implements OnClickListener
 		tipsToast.show();
 		tipsToast.setIcon(iconResId);
 		tipsToast.setText(tips);
-	}
-
-	@Override
-	public void onRefresh() {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				mSwipeLayout.setRefreshing(false);
-			}
-		}, 5000);
 	}
 }

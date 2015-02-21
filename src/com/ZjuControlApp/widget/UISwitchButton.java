@@ -17,7 +17,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewParent;
 import android.widget.CheckBox;
 
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 public class UISwitchButton extends CheckBox {
 	private Paint mPaint;

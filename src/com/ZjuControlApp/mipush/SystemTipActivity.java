@@ -15,7 +15,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 public class SystemTipActivity extends Activity implements OnClickListener {
 	TextView text_message;

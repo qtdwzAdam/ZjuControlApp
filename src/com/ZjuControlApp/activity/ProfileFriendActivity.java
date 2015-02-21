@@ -19,7 +19,7 @@ import com.appkefu.lib.interfaces.KFIMInterfaces;
 import com.appkefu.lib.service.KFMainService;
 import com.appkefu.lib.ui.entity.KFVCardEntity;
 import com.appkefu.lib.utils.KFImageUtils;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 /**
  * 

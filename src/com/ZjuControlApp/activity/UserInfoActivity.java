@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.ZjuControlApp.widget.TipsToast;
-import com.herotculb.qunhaichat.R;
+import com.ZjuControlApp.R;
 
 public class UserInfoActivity extends Activity implements OnClickListener{
 
