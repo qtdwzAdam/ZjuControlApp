@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import android.app.AlertDialog;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.AlertDialog;
-import android.app.ListFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,27 +19,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.ZjuControlApp.R;
 import com.ZjuControlApp.activity.AddKzBxActivity;
-import com.ZjuControlApp.activity.AddUserActivity;
-import com.ZjuControlApp.activity.UserInfoActivity;
 import com.ZjuControlApp.widget.TipsToast;
-import com.ZjuControlApp.listview.KzBxList;
 
 // frame three indeed
 public class ThreeFragmentKzBx extends Fragment implements OnClickListener, SwipeRefreshLayout.OnRefreshListener{
 	LinearLayout linear_chuanjian,linear_jiaru, mainLayout;
 	private static TipsToast tipsToast;
 	
-	private List<Map<String, Object>> mData;
+	private static List<Map<String, Object>> mData;
 	private SwipeRefreshLayout mSwipeLayout;
 	private ListView lv;
 
@@ -65,15 +57,7 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 				android.R.color.holo_red_light);
 
 		lv = (ListView) view.findViewById(R.id.kz_bx_listView);
-/*
-		SimpleAdapter simAdapter = new SimpleAdapter(getActivity(), getData(),
-				R.layout.base_list_adapt,
-				new String[]{"title", "info", "btn"},
-				new int[]{R.id.base_list_title, R.id.base_list_info, R.id.base_list_setting});
-		
-		lv.setAdapter(simAdapter);
-		
-	*/	
+
 		mData = getData();
 		MyAdapter adapter = new MyAdapter(getActivity());
 		lv.setAdapter(adapter);
@@ -151,6 +135,20 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 		public Button btn;
 	}
 
+	public static Map<String, Object> getDataByTitle(Object data)
+	{
+		for(Map<String, Object> tmp : mData){
+			if (tmp.get("title").toString().equals(data.toString()))
+				return tmp;
+		}		
+		return null;
+	}
+	public static int addData(Map<String, Object> data) {
+		if (getDataByTitle(data.get("title")) != null)
+			return 1; // for the same title exit.
+		mData.add(data);
+		return 0;
+	}
 	private List<Map<String, Object>> getData() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 

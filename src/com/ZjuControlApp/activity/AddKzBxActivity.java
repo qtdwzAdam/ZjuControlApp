@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ZjuControlApp.activity.fragment.ThreeFragmentKzBx;
 import com.ZjuControlApp.widget.TipsToast;
 import com.ZjuControlApp.R;
 
@@ -87,7 +88,28 @@ public class AddKzBxActivity extends Activity implements OnClickListener{
 		}
 		else 
 		{
-			showTips(R.drawable.tips_warning,"Comming soon....");
+			Map<String, Object> map = new HashMap<String, Object>();
+			if (ThreeFragmentKzBx.getDataByTitle(friendUsername) != null)
+			{
+				showTips(R.drawable.tips_warning, "添加失败-名称重复");
+				return;
+			}
+			map.put("title", friendUsername);
+			map.put("info", "google 1");
+			map.put("btn", "setting");
+			int result = ThreeFragmentKzBx.addData(map);
+			switch (result){
+			case 0: 
+				showTips(R.drawable.tips_smile, "添加成功");
+				break;
+			case 1:
+				showTips(R.drawable.tips_warning, "添加失败-名称重复");
+				break;
+				
+			default:
+				break;
+			}
+			//showTips(R.drawable.tips_warning,"Coming soon....");
 		}  
 	}
 	
