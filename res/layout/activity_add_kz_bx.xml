@@ -34,7 +34,7 @@
     </RelativeLayout>
 
     <RelativeLayout 
-        android:id="@+id/add_kz_bx_method_bluetooth"
+        android:id="@+id/add_kz_bx_title"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:layout_below="@+id/add_kz_bx_top_layout"
@@ -46,11 +46,11 @@
 	        android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
 			android:layout_marginLeft="27dp"
-	        android:text="添加蓝牙设备"
+	        android:text="设备名称"
 	        android:gravity="center_vertical"
 	        android:singleLine="true"
 	        android:textColor="#000"
-	        android:textSize="15sp" 
+	        android:textSize="25sp" 
             />
 		<EditText
 	        android:id="@+id/add_kz_bx_user_edit"
@@ -65,10 +65,42 @@
 	        android:singleLine="true"
 	        android:textColor="#000"
 	        android:textSize="15sp" />
-        
     </RelativeLayout>
 
-
+    <RelativeLayout 
+        android:id="@+id/add_kz_bx_method_bluetooth"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/add_kz_bx_title"
+        android:layout_marginTop="20dp"
+        >
+        <TextView 
+	        android:layout_width="110dp"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+			android:layout_marginLeft="27dp"
+	        android:text="搜索蓝牙"
+	        android:gravity="center_vertical"
+	        android:singleLine="true"
+	        android:textColor="#000"
+	        android:textSize="25sp" 
+            />
+		<EditText
+	        android:id="@+id/add_kz_bx_inner_id"
+	        android:layout_width="120dp"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+			android:layout_marginRight="27dp"
+	        android:background="@drawable/login_editbox"
+	        android:hint="内部编号"
+	        android:gravity="center_vertical"
+	        android:singleLine="true"
+	        android:textColor="#000"
+	        android:textSize="15sp" />
+    </RelativeLayout>
+    
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -82,7 +114,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:text="添加新用户"
+            android:text="添加新设备"
             android:background="@drawable/btn_denglu"
             android:textColor="#ffffff"
             android:textSize="18sp" />

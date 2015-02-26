@@ -2,12 +2,8 @@ package com.ZjuControlApp.widget.popwin;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,18 +11,9 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
-import com.ZjuControlApp.Main.MainActivity;
-import com.ZjuControlApp.activity.FeekBackActivity;
-import com.ZjuControlApp.activity.MessagesActivity;
-import com.ZjuControlApp.activity.ProfileActivity;
-import com.ZjuControlApp.activity.SettingActivity;
-import com.ZjuControlApp.activity.SignInActivity;
-import com.appkefu.lib.interfaces.KFIMInterfaces;
 import com.ZjuControlApp.R;
-import com.tencent.weibo.oauthv2.OAuthV2;
 
 public class KzFreezerPopWin extends PopupWindow {
 

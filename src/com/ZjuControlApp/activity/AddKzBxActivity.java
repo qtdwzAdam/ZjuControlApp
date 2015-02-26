@@ -33,11 +33,9 @@ import com.ZjuControlApp.R;
  *
  */
 public class AddKzBxActivity extends Activity implements OnClickListener{
-	
-	
-	private EditText mFriendUsername; // 帐号编辑框
-
-	private Button mAddFriendBtn;
+	private EditText mbxUsername; // 帐号编辑框
+	private EditText innerId;
+	private Button mAddBxBtn;
 	private Button mBackBtn;
 	
 	private static TipsToast tipsToast;
@@ -47,15 +45,16 @@ public class AddKzBxActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_kz_bx);
 		Intent intent = getIntent();
-		mFriendUsername = (EditText) findViewById(R.id.add_kz_bx_user_edit);
+		mbxUsername = (EditText) findViewById(R.id.add_kz_bx_user_edit);
+		innerId = (EditText) findViewById(R.id.add_kz_bx_inner_id);
 		
-		mAddFriendBtn = (Button) findViewById(R.id.add_kz_bx_btn);
-		mAddFriendBtn.setOnClickListener(this);
+		mAddBxBtn = (Button) findViewById(R.id.add_kz_bx_btn);
+		mAddBxBtn.setOnClickListener(this);
 		
 		mBackBtn = (Button) findViewById(R.id.add_kz_bx_reback_btn);
 		mBackBtn.setOnClickListener(this);
 		String resultString = intent.getStringExtra("resultString");
-		mFriendUsername.setText(resultString);
+		mbxUsername.setText(resultString);
 		
 	}
 	
@@ -64,7 +63,7 @@ public class AddKzBxActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch(v.getId()) {
 		case R.id.add_kz_bx_btn:
-			add_friend();
+			add_Bx();
 			break;
 		case R.id.add_kz_bx_reback_btn:
 			finish();
@@ -74,14 +73,15 @@ public class AddKzBxActivity extends Activity implements OnClickListener{
 		}
 	}
 	
-	public void add_friend() 
+	public void add_Bx() 
 	{
-		String friendUsername = mFriendUsername.getText().toString();
-		if ("".equals(friendUsername))// 判断 帐号和密码
+		String bxUsername = mbxUsername.getText().toString();
+		String innerIdName = innerId.getText().toString();
+		if ("".equals(bxUsername))// 判断 帐号和密码
 		{
 			showTips(R.drawable.tips_warning, "对方帐号不能为空，\n请输入后再添加...");
 		}
-		else if(friendUsername.contains("@") || friendUsername.contains("."))
+		else if(bxUsername.contains("@") || bxUsername.contains("."))
 		{
 			showTips(R.drawable.tips_warning, "含有非法字符");
 			return;
@@ -89,13 +89,13 @@ public class AddKzBxActivity extends Activity implements OnClickListener{
 		else 
 		{
 			Map<String, Object> map = new HashMap<String, Object>();
-			if (ThreeFragmentKzBx.getDataByTitle(friendUsername) != null)
+			if (ThreeFragmentKzBx.getDataByTitle(bxUsername) != null)
 			{
 				showTips(R.drawable.tips_warning, "添加失败-名称重复");
 				return;
 			}
-			map.put("title", friendUsername);
-			map.put("info", "google 1");
+			map.put("title", bxUsername);
+			map.put("info", "No data");
 			map.put("btn", "setting");
 			int result = ThreeFragmentKzBx.addData(map);
 			switch (result){

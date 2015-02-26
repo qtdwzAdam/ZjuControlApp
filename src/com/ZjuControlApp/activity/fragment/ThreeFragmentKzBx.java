@@ -6,28 +6,38 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.app.ActionBar.LayoutParams;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ZjuControlApp.R;
 import com.ZjuControlApp.activity.AddKzBxActivity;
+import com.ZjuControlApp.activity.HomeInfoKongzhiAcitvity;
 import com.ZjuControlApp.widget.TipsToast;
+import com.ZjuControlApp.widget.popwin.KzFreezerPopWin;
 
 // frame three indeed
 public class ThreeFragmentKzBx extends Fragment implements OnClickListener, SwipeRefreshLayout.OnRefreshListener{
@@ -81,6 +91,7 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 		}
 		
 	}
+	
 	@Override
 	public void onRefresh() {
 		// TODO Auto-generated method stub
@@ -93,18 +104,6 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 	}
 	
 	
-	public void showInfo(){
-		new AlertDialog.Builder(getActivity())
-		.setTitle("我的listview")
-		.setMessage("介绍...")
-		.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-			}
-		})
-		.show();
-	}
-	
 	/**
 	 * 自定义toast
 	 * 
@@ -112,8 +111,6 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 	 *            图片
 	 * @param msgResId
 	 *            提示文字
-	 *
-	 *
 	 */
 	public void showTips(int iconResId, String tips) {
 		if (tipsToast != null) {
@@ -149,34 +146,26 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 		mData.add(data);
 		return 0;
 	}
+	// get the data for original.
 	private List<Map<String, Object>> getData() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("title", "G1");
-		map.put("info", "google 1");
+		map.put("title", "地下室");
+		map.put("info", "-5");
 		map.put("btn", "setting");
 		list.add(map);
-
 		map = new HashMap<String, Object>();
-		map.put("title", "G2");
-		map.put("info", "google 2");
+		map.put("title", "厨房");
+		map.put("info", "4");
 		map.put("btn", "setting");
 		list.add(map);
-
-		map = new HashMap<String, Object>();
-		map.put("title", "G3");
-		map.put("info", "google 3");
-		map.put("btn", "setting");
-		list.add(map);
-		
 		return list;
 	}
 	
+	// main imp for extends of base adapter.
 	public class MyAdapter extends BaseAdapter{
 
 		private LayoutInflater mInflater;
-		
 		
 		public MyAdapter(Context context){
 			this.mInflater = LayoutInflater.from(context);
@@ -188,53 +177,131 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 		}
 
 		@Override
-		public Object getItem(int arg0) {
+		public Object getItem(int position) {
 			// TODO Auto-generated method stub
-			return null;
+			return mData.get(position);
 		}
 
 		@Override
-		public long getItemId(int arg0) {
+		public long getItemId(int position) {
 			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			
 			ViewHolder holder = null;
+			MyListener myListener = new MyListener(position);;
 			if (convertView == null) {
 				
 				holder=new ViewHolder();  
+				
+				
 				
 				convertView = mInflater.inflate(R.layout.base_list_adapt, null);
 				holder.title = (TextView)convertView.findViewById(R.id.base_list_title);
 				holder.info = (TextView)convertView.findViewById(R.id.base_list_info);
 				holder.btn = (Button)convertView.findViewById(R.id.base_list_setting);
 				convertView.setTag(holder);
-				
+
 			}else {
-				
 				holder = (ViewHolder)convertView.getTag();
 			}
 			
 			holder.title.setText((String)mData.get(position).get("title"));
 			holder.info.setText((String)mData.get(position).get("info"));
 			holder.btn.setText((String)mData.get(position).get("btn"));
+			System.out.println("In the getView: "+ mData.get(position).get("title").toString());
 			
-			holder.btn.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					showTips(R.drawable.tips_error, "什么都木有......");				
-				}
-			});
-			
-			
+			//holder.btn.setOnClickListener(myListener);
+			holder.btn.setOnClickListener(myListener);
+			System.out.println("In the getView: "+ mData.get(position).get("title").toString());
 			return convertView;
 		}
 		
 	}
 	
+	// set the listener for each item on the listview.
+	private class MyListener implements OnClickListener{
+		int mPosition;  
+		private KzBxPopWin menuWinBX; 
+		private OnClickListener itemsOnClickBX = new OnClickListener() {
+
+			public void onClick(View v) {
+				System.out.println("In the itemOnClickBX: ");
+				menuWinBX.dismiss();
+			}
+		};
+        public MyListener(int inPosition){  
+        	System.out.println("In the MyListener: ");
+            mPosition= inPosition;  
+        }  
+        
+        @Override  
+        public void onClick(View v) {  
+            // TODO Auto-generated method stub  
+        	System.out.println("In the OnClickBX: " );
+        	menuWinBX = new KzBxPopWin(getActivity(), itemsOnClickBX, mPosition);
+        	menuWinBX.showAtLocation(getActivity().findViewById(R.id.kz_bx_add_new),
+        			Gravity.BOTTOM | Gravity.LEFT, 0, 0);
+        }  
+          
+    }  
+	
+	
+	// main imp for the pop windows.
+	private class KzBxPopWin extends PopupWindow {
+		private View mMenuView;
+		Button linear_setting,linear_tuichu;
+
+		public KzBxPopWin(final Activity context,
+				OnClickListener itemsOnClick, 
+				int winPosition) {
+			super(context);
+			LayoutInflater inflater = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			mMenuView = inflater.inflate(R.layout.hif_kz_freezer, null);
+			int h = context.getWindowManager().getDefaultDisplay().getHeight();
+			int w = context.getWindowManager().getDefaultDisplay().getWidth();
+
+			//设置按钮
+			linear_setting = (Button) mMenuView.findViewById(R.id.HIF_KZ_bingxiang_set_btn);
+			linear_setting.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// TODO dwz
+					dismiss();
+
+				}
+			});
+			//取消按钮
+			linear_tuichu = (Button) mMenuView.findViewById(R.id.HIF_KZ_bingxiang_cancel_btn);
+			linear_tuichu.setOnClickListener(new OnClickListener() {
+
+				public void onClick(View v) {
+					dismiss();
+				}
+			});
+			this.setContentView(mMenuView);
+			this.setWidth(w);
+			this.setHeight(LayoutParams.WRAP_CONTENT);
+			this.setFocusable(true);
+			this.setAnimationStyle(R.style.mystyle);
+			ColorDrawable dw = new ColorDrawable(0000000000);
+			this.setBackgroundDrawable(dw);
+			mMenuView.setOnTouchListener(new OnTouchListener() {
+				public boolean onTouch(View v, MotionEvent event) {
+					int height = mMenuView.findViewById(R.id.hif_kz_freezer_set_main).getTop();
+					int y=(int) event.getY();
+					if(event.getAction()==MotionEvent.ACTION_UP){
+						if(y<height){
+							dismiss();
+						}
+					}
+					return true;
+				}
+			});
+		}
+	}
 
 }
