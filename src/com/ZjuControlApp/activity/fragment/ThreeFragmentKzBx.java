@@ -12,12 +12,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -30,23 +32,31 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ZjuControlApp.R;
 import com.ZjuControlApp.activity.AddKzBxActivity;
 import com.ZjuControlApp.activity.HomeInfoKongzhiAcitvity;
+import com.ZjuControlApp.adapter.TopicDBAdapter;
 import com.ZjuControlApp.widget.TipsToast;
 import com.ZjuControlApp.widget.popwin.KzFreezerPopWin;
+import com.android.data.ActivityTopicEdit;
 
 // frame three indeed
 public class ThreeFragmentKzBx extends Fragment implements OnClickListener, SwipeRefreshLayout.OnRefreshListener{
+	private static final String tag="ThreeFragmentKzBx";
+	
 	LinearLayout linear_chuanjian,linear_jiaru, mainLayout;
 	private static TipsToast tipsToast;
 	
 	private static List<Map<String, Object>> mData;
 	private SwipeRefreshLayout mSwipeLayout;
 	private ListView lv;
+	
+	private TopicDBAdapter mdbhelper;
+	private Cursor mcursor;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,21 +70,37 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 		linear_jiaru.setOnClickListener(this);
 		mainLayout.setOnClickListener(this);
 		
+		// for pull to refresh
 		mSwipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.kz_bx_main_refresh);
 		mSwipeLayout.setOnRefreshListener(this);
 		mSwipeLayout.setColorScheme(android.R.color.holo_blue_bright,
 				android.R.color.holo_green_light, android.R.color.holo_orange_light,
 				android.R.color.holo_red_light);
-
-		lv = (ListView) view.findViewById(R.id.kz_bx_listView);
-
-		mData = getData();
-		MyAdapter adapter = new MyAdapter(getActivity());
-		lv.setAdapter(adapter);
+		
+		// for listview 
+		lv = (ListView) view.findViewById(R.id.kz_bx_listView);		
+		mdbhelper=new TopicDBAdapter(getActivity(), "KzBx");
+		mdbhelper.open();
+		getData();
 		
 		return view;
 		
 	}
+	
+	public void getData()
+	{
+		mcursor=mdbhelper.queryALl();
+		Log.i(tag,"rendListView mcursor==null "+(mcursor==null));
+		
+		MyAdapter adapter = new MyAdapter(getActivity());
+		
+		LoaderManager(mcursor);
+		//SimpleCursorAdapter只识别_id,当你用到sqlite的simpleCursorAdapter时，必须把数据表的主键命名为_id。否则就会出现java.lang.IllegalArgumentException: column ‘_id’ does not exist错误。
+		SimpleCursorAdapter adapter=new SimpleCursorAdapter(this, R.layout.topicrow, mcursor, new String[]{mdbAdapter.key_title,mdbAdapter.key_createTime}, new int[]{R.id.title,R.id.createtime}) ;
+	    
+		lv.setAdapter(adapter);
+	}
+	
 	
 	@Override
 	public void onClick(View v) {
@@ -146,21 +172,6 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 		mData.add(data);
 		return 0;
 	}
-	// get the data for original.
-	private List<Map<String, Object>> getData() {
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("title", "地下室");
-		map.put("info", "-5");
-		map.put("btn", "setting");
-		list.add(map);
-		map = new HashMap<String, Object>();
-		map.put("title", "厨房");
-		map.put("info", "4");
-		map.put("btn", "setting");
-		list.add(map);
-		return list;
-	}
 	
 	// main imp for extends of base adapter.
 	public class MyAdapter extends BaseAdapter{
@@ -195,9 +206,6 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 			if (convertView == null) {
 				
 				holder=new ViewHolder();  
-				
-				
-				
 				convertView = mInflater.inflate(R.layout.base_list_adapt, null);
 				holder.title = (TextView)convertView.findViewById(R.id.base_list_title);
 				holder.info = (TextView)convertView.findViewById(R.id.base_list_info);
@@ -208,7 +216,8 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 				holder = (ViewHolder)convertView.getTag();
 			}
 			
-			holder.title.setText((String)mData.get(position).get("title"));
+			holder.title.setText((String)mdbhelper.get(position).get("title"));
+			mdbhelper.
 			holder.info.setText((String)mData.get(position).get("info"));
 			holder.btn.setText((String)mData.get(position).get("btn"));
 			System.out.println("In the getView: "+ mData.get(position).get("title").toString());
