@@ -89,7 +89,6 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 	public void getData()
 	{
 		mcursor=mdbhelper.queryALl();
-		Log.i(tag,"getData - rendListView mcursor==null "+(mcursor==null));
 		
 		getActivity().startManagingCursor(mcursor);
 		
@@ -160,7 +159,6 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 	{
 		int flag = 0;
 		Cursor cursorTmp = null;
-		Log.i(tag, "getDataByTitle : "+title);
 		try {
 			cursorTmp = mdbhelper.queryByTitle((String)title);
 			flag = 1;
@@ -178,7 +176,6 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 	public static int addData(Map<String, Object> data) {
 		mdbhelper.insert(data.get("title").toString(), data.get("info").toString());
 		mcursor = mdbhelper.queryALl();
-		Log.i(tag,"addData - rendListView mcursor==null "+(mcursor==null));
 		return 0;
 	}
 	
@@ -231,9 +228,7 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 			}else {
 				holder = (ViewHolder)convertView.getTag();
 			}
-			Log.i(tag, "before the mcursor");
 			mcursor = mdbhelper.queryALl();
-			Log.i(tag,"getview - rendListView mcursor==null "+(mcursor==null));
 			
 			mcursor.moveToPosition(position);
 			holder.title.setText((String)mcursor.getString(mcursor.getColumnIndex("title")));
@@ -260,19 +255,16 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener, Swip
 		private OnClickListener itemsOnClickBX = new OnClickListener() {
 
 			public void onClick(View v) {
-				System.out.println("In the itemOnClickBX: ");
 				menuWinBX.dismiss();
 			}
 		};
         public MyListener(int inPosition){  
-        	Log.i(tag, "In the MyListener: ");
             mPosition= inPosition;  
         }  
         
         @Override  
         public void onClick(View v) {  
             // TODO Auto-generated method stub  
-        	System.out.println("In the OnClickBX: " );
         	menuWinBX = new KzBxPopWin(getActivity(), itemsOnClickBX, mPosition);
         	menuWinBX.showAtLocation(getActivity().findViewById(R.id.kz_bx_add_new),
         			Gravity.BOTTOM | Gravity.LEFT, 0, 0);

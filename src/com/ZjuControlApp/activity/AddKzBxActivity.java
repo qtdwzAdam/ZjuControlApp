@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ import com.ZjuControlApp.R;
  *
  */
 public class AddKzBxActivity extends Activity implements OnClickListener{
+	private static final String tag = "AddKzBxActivity";
 	private EditText mbxUsername; // 帐号编辑框
 	private EditText innerId;
 	private Button mAddBxBtn;
@@ -44,6 +46,7 @@ public class AddKzBxActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_kz_bx);
+		
 		Intent intent = getIntent();
 		mbxUsername = (EditText) findViewById(R.id.add_kz_bx_user_edit);
 		innerId = (EditText) findViewById(R.id.add_kz_bx_inner_id);

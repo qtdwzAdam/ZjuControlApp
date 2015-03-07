@@ -16,7 +16,7 @@ public class TopicDBAdapter {
 	private static final String tag="TopicDBAdapter";
 	
 	//定义数据库常量
-	private static final String databaseName="topDB";
+	private String databaseName;
 	private String tableName;
 	//定义字段
 	public static final String key_id="_id";
@@ -36,6 +36,7 @@ public class TopicDBAdapter {
 	{
 		this.mcxt=cxt;
 		tableName = tableN;
+		databaseName = tableN;
 	}
 	
 	public class DatabaseHelper extends SQLiteOpenHelper{
@@ -44,19 +45,18 @@ public class TopicDBAdapter {
 			super(context, databaseName, null, database_version);
 			// TODO Auto-generated constructor stub
 		}
-
 		
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			// TODO Auto-generated method stub
 			//创建数据表
-		   String sql="create table "
+			String sql="create table "
 				   +tableName+"(_id integer primary key autoincrement,"
 				   +key_title+" text not null,"
 				   +key_setting+" text not null,"
 				   +key_info+" text not null);";
-		   Log.i(tag,"sql="+sql);
-		   db.execSQL(sql);
+			Log.i(tag,"sql="+sql);
+			db.execSQL(sql);
 		}
 
 		@Override
@@ -76,7 +76,6 @@ public class TopicDBAdapter {
 	
 	public long insert(String title,String info)
 	{
-		Log.i(tag,"insert");
 		mdb=mdbhelper.getWritableDatabase();
 		// Calendar calendar=Calendar.getInstance();
 		// String info=calendar.get(Calendar.YEAR)+"年"+calendar.get(Calendar.MONTH+1)+"月"+calendar.get(Calendar.DAY_OF_MONTH)+"日"+calendar.get(Calendar.HOUR)+"时"+calendar.get(Calendar.MINUTE)+"分";
@@ -102,7 +101,6 @@ public class TopicDBAdapter {
 	
 	public Cursor queryALl()
 	{
-		Log.i(tag,"queryAll");
         mdb=mdbhelper.getReadableDatabase();
 		Cursor cursor=mdb.query(tableName,new String[]{key_id,key_title,key_setting,key_info},
 				null,

@@ -20,6 +20,7 @@ import com.xiaomi.mipush.sdk.MiPushClient;
 import com.ZjuControlApp.activity.fragment.OneFragment;
 import com.ZjuControlApp.activity.fragment.ThreeFragment;
 import com.ZjuControlApp.activity.fragment.ThreeFragmentKzBx;
+import com.ZjuControlApp.activity.fragment.ThreeFragmentKzKt;
 import com.ZjuControlApp.activity.fragment.TwoFragment;
 import com.ZjuControlApp.adapter.FragmentViewPagerAdapter;
 import com.ZjuControlApp.widget.TipsToast;
@@ -89,7 +90,7 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements OnClick
 		fragmentList = new ArrayList<Fragment>();
 		
 		ThreeFragmentKzBx oneFragment = new ThreeFragmentKzBx();
-		TwoFragment twoFragment = new TwoFragment();
+		ThreeFragmentKzKt twoFragment = new ThreeFragmentKzKt();
 		ThreeFragment threeFragment = new ThreeFragment();
 
 		fragmentList.add(0, oneFragment);
