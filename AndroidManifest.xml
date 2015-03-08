@@ -241,6 +241,11 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
+            android:name="com.ZjuControlApp.activity.EditOrDel"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
             android:name="com.ZjuControlApp.activity.ErcodeScanActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar" >

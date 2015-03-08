@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
     tools:context="com.herotculb.fragmentdemo.MainActivity$PlaceholderFragment" >
 
    	<LinearLayout
@@ -46,6 +47,7 @@
         	android:layout_margin="5dp"
         	android:dividerHeight="5dp"
         	android:paddingTop="10dp" 
+        	
 	        android:divider="@null" >
 	    </ListView>
 	    <include layout="@layout/layout_line1" />

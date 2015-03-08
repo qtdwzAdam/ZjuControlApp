@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_margin="15dp"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal" >
 	<TextView android:id="@+id/base_list_title" 
 		android:layout_width="wrap_content"
@@ -31,5 +32,6 @@
 		android:layout_alignParentRight="true"
 		android:background="@drawable/btn_denglu"
 		android:textColor="#ffffff"
+		android:focusable="false"
 		android:textSize="18sp" />
 </RelativeLayout>

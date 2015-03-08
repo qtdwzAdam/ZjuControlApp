@@ -1,16 +1,11 @@
 package com.ZjuControlApp.activity.fragment;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
@@ -19,7 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -32,16 +26,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.ZjuControlApp.R;
 import com.ZjuControlApp.activity.AddKzKtActivity;
-import com.ZjuControlApp.activity.HomeInfoKongzhiAcitvity;
 import com.ZjuControlApp.adapter.TopicDBAdapter;
 import com.ZjuControlApp.widget.TipsToast;
-import com.ZjuControlApp.widget.popwin.KzFreezerPopWin;
 
 // frame three indeed
 public class ThreeFragmentKzKt extends Fragment implements OnClickListener, SwipeRefreshLayout.OnRefreshListener{

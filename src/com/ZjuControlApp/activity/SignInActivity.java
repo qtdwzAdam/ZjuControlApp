@@ -52,6 +52,7 @@ public class SignInActivity extends Activity implements OnClickListener {
 			if ((System.currentTimeMillis() - mExitTime) > 2000) {
 				showTips(R.drawable.tips_smile, "再按一次返回桌面");
 				mExitTime = System.currentTimeMillis();
+				
 
 			} else {
 				finish();
