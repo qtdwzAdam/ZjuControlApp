@@ -127,7 +127,15 @@ public class TopicDBAdapter {
 	public void delById(long rowId)
 	{
 		mdb=mdbhelper.getWritableDatabase();
-		mdb.delete(tableName,key_id+"="+rowId,null);
+		mdb.delete(tableName,key_id + "=" + rowId,null);
+	}
+	
+	public void delByTitle(String tit)
+	{
+		mdb=mdbhelper.getWritableDatabase();
+		mdb.delete(tableName, 
+				key_title + "=\'" + tit + "\'", 
+				null);
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.ZjuControlApp.activity.fragment;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import android.app.ActionBar.LayoutParams;
@@ -47,13 +48,14 @@ import com.ZjuControlApp.widget.TipsToast;
  */
 public class ThreeFragmentKzBx extends Fragment implements OnClickListener,
 		SwipeRefreshLayout.OnRefreshListener {
-	private static final String tag = "ThreeFragmentKzBx";
+	public static final String tag = "ThreeFragmentKzBx";
 
 	LinearLayout linear_chuanjian, linear_jiaru, mainLayout;
 	private static TipsToast tipsToast;
 
 	private SwipeRefreshLayout mSwipeLayout;
 	private ListView lv;
+	private MyAdapter lvAdapter;
 
 	private static TopicDBAdapter mdbhelper;
 	private static Cursor mcursor;
@@ -81,21 +83,27 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener,
 
 		// for listview
 		lv = (ListView) view.findViewById(R.id.kz_bx_listView);
-		mdbhelper = new TopicDBAdapter(getActivity(), "KzBx");
+		mdbhelper = new TopicDBAdapter(getActivity(), tag);
 		mdbhelper.open();
 		getData();
 
 		lv.setOnItemLongClickListener(new OnItemLongClickListener() {
-
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Log.i(tag, "in the onItemLongClick");
 				Intent intent = new Intent();
 				intent.setClass(getActivity(), EditOrDel.class);
+
+				intent.putExtra("database", tag);
 				intent.putExtra("position", String.valueOf(position));
 				intent.putExtra("row", String.valueOf(id));
-				getActivity().startActivityForResult(intent, 1);
+				Map<String, Object> tmpItem = (HashMap<String, Object>) lv
+						.getItemAtPosition(position);
+				String tmpTitle = tmpItem.get("title").toString();
+				intent.putExtra("title", tmpTitle);
+				// lvAdapter.notifyDataSetChanged();
+
+				startActivityForResult(intent, Activity.RESULT_FIRST_USER);
 				return true;
 			}
 		});
@@ -104,15 +112,51 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener,
 
 	}
 
+	public void tmpTest(Intent data) 
+	{
+		Intent intent = data;
+		int positin = intent.getIntExtra("position", 0);
+
+		String title = intent.getStringExtra("title");
+		mdbhelper.delByTitle(title);
+		lvAdapter.notifyDataSetChanged();
+	}
+
+	
+	 @Override
+	 public void onActivityResult(int requestCode, int resultCode, Intent
+	 data) {
+	 // super.onActivityResult(requestCode, resultCode, data);
+	 getParentFragment().onActivityResult(requestCode, resultCode, data);
+	 ;
+	 String keyId = data.getExtras().getString("key");
+	 Log.i(tag, "the key is : " + keyId);
+	 Log.i(tag, "the requastCode is : " + requestCode);
+	 Log.i(tag, "the resultCode is : " + resultCode);
+	 switch (keyId) {
+	 case "1":
+	 // pressed the edit button
+	 break;
+	 case "2":
+	 // pressed the del button
+	 lv.setAdapter(lvAdapter);
+	 Log.i(tag, "onActivityResult.");
+	 break;
+	 default:
+	 Log.i(tag, "the key is : " + keyId);
+	 break;
+	 }
+	 }
+
 	@SuppressWarnings("deprecation")
 	public void getData() {
 		mcursor = mdbhelper.queryALl();
 
 		getActivity().startManagingCursor(mcursor);
 
-		MyAdapter adapter = new MyAdapter(getActivity());
+		lvAdapter = new MyAdapter(getActivity());
 
-		lv.setAdapter(adapter);
+		lv.setAdapter(lvAdapter);
 	}
 
 	@Override
@@ -213,14 +257,19 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener,
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
+			mcursor = mdbhelper.queryALl();
 			return mcursor.getCount();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
-			return mcursor.moveToPosition(position);
+			Map<String, Object> item = new HashMap<String, Object>();
+			mcursor = mdbhelper.queryALl();
+			mcursor.moveToPosition(position);
+			item.put("title",
+					mcursor.getString(mcursor.getColumnIndex("title")));
+			item.put("info", mcursor.getString(mcursor.getColumnIndex("info")));
+			return item;
 		}
 
 		@Override
@@ -287,7 +336,11 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener,
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			// Map<String, Object> tmpItem = (HashMap<String, Object>) lv
+			// .getItemAtPosition(mPosition);
+			// String tmpTitle = tmpItem.get("title").toString();
+			// mdbhelper.delByTitle(tmpTitle);
+			// lvAdapter.notifyDataSetChanged();
 			menuWinBX = new KzBxPopWin(getActivity(), itemsOnClickBX, mPosition);
 			menuWinBX.showAtLocation(
 					getActivity().findViewById(R.id.kz_bx_add_new),

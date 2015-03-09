@@ -10,20 +10,30 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.ZjuControlApp.R;
+import com.ZjuControlApp.adapter.TopicDBAdapter;
 
 public class EditOrDel extends Activity implements OnClickListener {
 	private static final String tag = "EditOrDel";
-	Button btn_edit, btn_del;
-
+	private Button btn_edit, btn_del;
+	private TopicDBAdapter mdbhelper;
+	private int position, row;
+	private String tableName, title;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
 
 		String tmpS = intent.getStringExtra("position");
-		int position = Integer.valueOf(tmpS).intValue();
+		position = Integer.valueOf(tmpS).intValue();
 		tmpS = intent.getStringExtra("row");
-		int row = Integer.valueOf(tmpS).intValue();
+		row = Integer.valueOf(tmpS).intValue();
+		tableName = intent.getStringExtra("database");
+		Log.i(tag, "tableName that of database is : " + tableName);
+		title = intent.getStringExtra("title");
+		
+		mdbhelper = new TopicDBAdapter(this, tableName);
+		mdbhelper.open();
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.edit_or_del);
@@ -42,13 +52,20 @@ public class EditOrDel extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btn_edit:
 			intent = new Intent();
-			intent.putExtra("key", "1"); // 设置要发送的数据
+			intent.putExtra("cmd", "edit"); // 设置要发送的数据
+			intent.putExtra("position", position);
+			intent.putExtra("title", title);
+			intent.putExtra("database", tableName);
 			setResult(RESULT_OK, intent);
 			finish();
 			break;
 		case R.id.btn_del:
 			intent = new Intent();
-			intent.putExtra("key", "2"); // 设置要发送的数据
+			//mdbhelper.delByTitle(title);
+			intent.putExtra("cmd", "del"); // 设置要发送的数据
+			intent.putExtra("position", position);
+			intent.putExtra("title", title);
+			intent.putExtra("database", tableName);
 			setResult(RESULT_OK, intent);
 			finish();
 			break;

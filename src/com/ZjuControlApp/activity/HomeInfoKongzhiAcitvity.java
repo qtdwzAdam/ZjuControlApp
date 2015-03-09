@@ -1,6 +1,5 @@
 package com.ZjuControlApp.activity;
 
-
 import java.util.ArrayList;
 
 import android.os.Bundle;
@@ -31,6 +30,7 @@ import com.ZjuControlApp.widget.popwin.KzGasStatePopWin;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ListFragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.widget.Button;
@@ -39,8 +39,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class HomeInfoKongzhiAcitvity extends FragmentActivity implements OnClickListener{
+public class HomeInfoKongzhiAcitvity extends FragmentActivity implements
+		OnClickListener {
 
+	private FragmentViewPagerAdapter adapter;
+
+	private static final String tag = "HomeInfoKongzhiActivity";
 	private ViewPager mPager = null;// tab pager
 	private ArrayList<Fragment> fragmentList;
 	private SwipeRefreshLayout mSwipeLayout;
@@ -52,43 +56,42 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements OnClick
 	private ViewPager mainLayout;
 
 	// 自定义的弹出框类
-	private KzFreezerPopWin menuWinBX; 
+	private KzFreezerPopWin menuWinBX;
 	private KzAirConditionerPopWin menuWinKT;
 	private KzGasStatePopWin menuWinMQ;
 	private static TipsToast tipsToast;
-	
+
 	@SuppressLint("CutPasteId")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// main view here
 		setContentView(R.layout.layout_home_info_kongzhi);
-		
-		mBackBtn = (Button)findViewById(R.id.home_KZ_reback_btn);
+
+		mBackBtn = (Button) findViewById(R.id.home_KZ_reback_btn);
 		mBackBtn.setOnClickListener(this);
-		
-		text_one = (TextView)findViewById(R.id.HIF_KZ_head_text_one);
-		text_two = (TextView)findViewById(R.id.HIF_KZ_head_text_two);
-		text_three = (TextView)findViewById(R.id.HIF_KZ_head_text_three);
-		text_four = (TextView)findViewById(R.id.HIF_KZ_head_text_four);
+
+		text_one = (TextView) findViewById(R.id.HIF_KZ_head_text_one);
+		text_two = (TextView) findViewById(R.id.HIF_KZ_head_text_two);
+		text_three = (TextView) findViewById(R.id.HIF_KZ_head_text_three);
+		text_four = (TextView) findViewById(R.id.HIF_KZ_head_text_four);
 
 		text_one.setOnClickListener(this);
 		text_two.setOnClickListener(this);
 		text_three.setOnClickListener(this);
 		text_four.setOnClickListener(this);
-		
+
 		mCreateBtn = (ImageButton) findViewById(R.id.layout_HIF_KZ_setting);
 		mCreateBtn.setOnClickListener(this);
-		
+
 		mainLayout = (ViewPager) findViewById(R.id.HIF_KZ_main_layout);
-		
+
 		mainLayout.setOnClickListener(this);
-		
-		
+
 		mPager = (ViewPager) findViewById(R.id.HIF_KZ_main_layout);
 
 		fragmentList = new ArrayList<Fragment>();
-		
+
 		ThreeFragmentKzBx oneFragment = new ThreeFragmentKzBx();
 		ThreeFragmentKzKt twoFragment = new ThreeFragmentKzKt();
 		ThreeFragment threeFragment = new ThreeFragment();
@@ -102,7 +105,7 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements OnClick
 		text_three.setOnClickListener(this);
 
 		setBackground(0);
-		FragmentViewPagerAdapter adapter = new FragmentViewPagerAdapter(
+		adapter = new FragmentViewPagerAdapter(
 				this.getSupportFragmentManager(), mPager, fragmentList);
 
 		adapter.setOnExtraPageChangeListener(new FragmentViewPagerAdapter.OnExtraPageChangeListener() {
@@ -112,12 +115,48 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements OnClick
 			}
 		});
 	}
+
 	
+	/* 
+	 * for switch to each handle problem.
+	 * (non-Javadoc)
+	 * @see android.support.v4.app.FragmentActivity#onActivityResult(int, int, android.content.Intent)
+	 * 
+	 */
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(resultCode, resultCode, data);
+		Log.i(tag, "onactivityresult.");
+		Intent intent = data;
+		switch (intent.getStringExtra("cmd")) {
+		case "del":
+			switch (intent.getStringExtra("database")) {
+			case ThreeFragmentKzBx.tag:
+				ThreeFragmentKzBx tmp = (ThreeFragmentKzBx) fragmentList.get(0);
+				tmp.tmpTest(data);
+				break;
+			case ThreeFragmentKzKt.tag:
+				ThreeFragmentKzKt tmp1 = (ThreeFragmentKzKt) fragmentList.get(1);
+				tmp1.tmpTest(data);
+				break;
+			default:
+				break;
+
+			}
+			break;
+		case "edit":
+			break;
+		default:
+			break;
+		}
+
+	}
+
 	@Override
 	public void onClick(View v) {
-		int x,y;
+		int x, y;
 		View view;
-		int locations[] ;
+		int locations[];
 		switch (v.getId()) {
 		case R.id.home_KZ_reback_btn:
 			finish();
@@ -142,6 +181,7 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements OnClick
 			break;
 		}
 	}
+
 	private void setBackground(int pos) {
 
 		text_one.setTextColor(Color.parseColor("#5B5B5B"));
@@ -165,33 +205,30 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements OnClick
 		}
 
 	}
+
 	private void uploadImageBX(final Activity context, int y, int id) {
 		menuWinBX = new KzFreezerPopWin(HomeInfoKongzhiAcitvity.this,
 				itemsOnClickBX);
 		// 显示窗口
-		menuWinBX.showAtLocation(
-				HomeInfoKongzhiAcitvity.this.findViewById(id),
+		menuWinBX.showAtLocation(HomeInfoKongzhiAcitvity.this.findViewById(id),
 				Gravity.TOP | Gravity.LEFT, 0, y); // 设置layout在PopupWindow中显示的位置
 	}
-	
+
 	private void uploadImageKT(final Activity context, int y, int id) {
 		menuWinKT = new KzAirConditionerPopWin(HomeInfoKongzhiAcitvity.this,
 				itemsOnClickKT);
 		// 显示窗口
-		menuWinKT.showAtLocation(
-				HomeInfoKongzhiAcitvity.this.findViewById(id),
+		menuWinKT.showAtLocation(HomeInfoKongzhiAcitvity.this.findViewById(id),
 				Gravity.TOP | Gravity.LEFT, 0, y); // 设置layout在PopupWindow中显示的位置
 	}
-	
+
 	private void uploadImageMQ(final Activity context, int y, int id) {
 		menuWinMQ = new KzGasStatePopWin(HomeInfoKongzhiAcitvity.this,
 				itemsOnClickMQ);
 		// 显示窗口
-		menuWinMQ.showAtLocation(
-				HomeInfoKongzhiAcitvity.this.findViewById(id),
+		menuWinMQ.showAtLocation(HomeInfoKongzhiAcitvity.this.findViewById(id),
 				Gravity.TOP | Gravity.LEFT, 0, y); // 设置layout在PopupWindow中显示的位置
 	}
-	
 
 	// 为弹出窗口实现监听类
 	private OnClickListener itemsOnClickBX = new OnClickListener() {
@@ -214,7 +251,7 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements OnClick
 			menuWinMQ.dismiss();
 		}
 	};
-	
+
 	/**
 	 * 自定义toast
 	 * 
@@ -222,8 +259,8 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements OnClick
 	 *            图片
 	 * @param msgResId
 	 *            提示文字
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	private void showTips(int iconResId, String tips) {
 		if (tipsToast != null) {
