@@ -3,6 +3,7 @@ package com.ZjuControlApp.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -11,12 +12,12 @@ import android.widget.Button;
 import com.ZjuControlApp.R;
 
 public class EditOrDel extends Activity implements OnClickListener {
+	private static final String tag = "EditOrDel";
 	Button btn_edit, btn_del;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		Intent intent = getIntent();
 
 		String tmpS = intent.getStringExtra("position");

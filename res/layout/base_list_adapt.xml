@@ -32,6 +32,5 @@
 		android:layout_alignParentRight="true"
 		android:background="@drawable/btn_denglu"
 		android:textColor="#ffffff"
-		android:focusable="false"
 		android:textSize="18sp" />
 </RelativeLayout>

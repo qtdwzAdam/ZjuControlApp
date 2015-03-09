@@ -1,9 +1,6 @@
 package com.ZjuControlApp.activity;
 
 import com.ZjuControlApp.R;
-import com.ZjuControlApp.R.id;
-import com.ZjuControlApp.R.layout;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

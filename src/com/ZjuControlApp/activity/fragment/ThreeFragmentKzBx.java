@@ -22,7 +22,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -33,7 +32,7 @@ import android.widget.TextView;
 
 import com.ZjuControlApp.R;
 import com.ZjuControlApp.activity.AddKzBxActivity;
-import com.ZjuControlApp.activity.SignOutActivity;
+import com.ZjuControlApp.activity.EditOrDel;
 import com.ZjuControlApp.adapter.TopicDBAdapter;
 import com.ZjuControlApp.widget.TipsToast;
 
@@ -44,7 +43,7 @@ import com.ZjuControlApp.widget.TipsToast;
  */
 /**
  * @author Adam
- *
+ * 
  */
 public class ThreeFragmentKzBx extends Fragment implements OnClickListener,
 		SwipeRefreshLayout.OnRefreshListener {
@@ -91,26 +90,14 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener,
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
 				Log.i(tag, "in the onItemLongClick");
-				Intent intent = new Intent(getActivity(), SignOutActivity.class);
-				intent.putExtra("position", position);
-				intent.putExtra("row", id);
-				startActivityForResult(intent, 1);
+				Intent intent = new Intent();
+				intent.setClass(getActivity(), EditOrDel.class);
+				intent.putExtra("position", String.valueOf(position));
+				intent.putExtra("row", String.valueOf(id));
+				getActivity().startActivityForResult(intent, 1);
 				return true;
 			}
-		});
-
-		lv.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-				Log.i(tag, "in the onItemClick ---  not long");
-
-			}
-
 		});
 
 		return view;
@@ -216,7 +203,7 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener,
 	 * @param
 	 * 
 	 */
-	public class MyAdapter extends BaseAdapter{
+	public class MyAdapter extends BaseAdapter {
 
 		private LayoutInflater mInflater;
 
@@ -245,7 +232,7 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener,
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder holder = null;
-			// MyListener myListener = new MyListener(position);
+			MyListener myListener = new MyListener(position);
 			;
 			if (convertView == null) {
 
@@ -271,7 +258,7 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener,
 					.getColumnIndex("info")));
 			holder.btn.setText((String) mcursor.getString(mcursor
 					.getColumnIndex("setting")));
-			// holder.btn.setOnClickListener(myListener);
+			holder.btn.setOnClickListener(myListener);
 			// holder.btn.setOnClickListener(myListener);
 			return convertView;
 		}
@@ -309,9 +296,9 @@ public class ThreeFragmentKzBx extends Fragment implements OnClickListener,
 
 	}
 
-	
 	/**
 	 * used as a pop win
+	 * 
 	 * @author Adam
 	 * 
 	 */
