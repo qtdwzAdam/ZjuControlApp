@@ -221,6 +221,16 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
+            android:name="com.ZjuControlApp.activity.AddKzDdActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.ZjuControlApp.activity.AddKzKaiGActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
             android:name="com.ZjuControlApp.activity.AddKzKtActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar" >

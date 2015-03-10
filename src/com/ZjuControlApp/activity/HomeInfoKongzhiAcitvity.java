@@ -19,6 +19,8 @@ import com.xiaomi.mipush.sdk.MiPushClient;
 import com.ZjuControlApp.activity.fragment.OneFragment;
 import com.ZjuControlApp.activity.fragment.ThreeFragment;
 import com.ZjuControlApp.activity.fragment.ThreeFragmentKzBx;
+import com.ZjuControlApp.activity.fragment.ThreeFragmentKzDd;
+import com.ZjuControlApp.activity.fragment.ThreeFragmentKzKaig;
 import com.ZjuControlApp.activity.fragment.ThreeFragmentKzKt;
 import com.ZjuControlApp.activity.fragment.TwoFragment;
 import com.ZjuControlApp.adapter.FragmentViewPagerAdapter;
@@ -94,15 +96,13 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements
 
 		ThreeFragmentKzBx oneFragment = new ThreeFragmentKzBx();
 		ThreeFragmentKzKt twoFragment = new ThreeFragmentKzKt();
-		ThreeFragment threeFragment = new ThreeFragment();
+		ThreeFragmentKzDd threeFragment = new ThreeFragmentKzDd();
+		ThreeFragmentKzKaig fourFragment = new ThreeFragmentKzKaig();
 
 		fragmentList.add(0, oneFragment);
 		fragmentList.add(1, twoFragment);
 		fragmentList.add(2, threeFragment);
-
-		text_one.setOnClickListener(this);
-		text_two.setOnClickListener(this);
-		text_three.setOnClickListener(this);
+		fragmentList.add(3, fourFragment);
 
 		setBackground(0);
 		adapter = new FragmentViewPagerAdapter(
@@ -139,6 +139,15 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements
 				ThreeFragmentKzKt tmp1 = (ThreeFragmentKzKt) fragmentList.get(1);
 				tmp1.tmpTest(data);
 				break;
+			case ThreeFragmentKzDd.tag:
+				ThreeFragmentKzDd tmp2 = (ThreeFragmentKzDd) fragmentList.get(2);
+				tmp2.tmpTest(data);
+				break;
+			case ThreeFragmentKzKaig.tag:
+				ThreeFragmentKzKaig tmp3 = (ThreeFragmentKzKaig) fragmentList.get(3);
+				tmp3.tmpTest(data);
+				break;
+					
 			default:
 				break;
 
@@ -175,7 +184,7 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements
 			mPager.setCurrentItem(2);
 			break;
 		case R.id.HIF_KZ_head_text_four:
-			mPager.setCurrentItem(1);
+			mPager.setCurrentItem(3);
 			break;
 		default:
 			break;
@@ -205,53 +214,6 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements
 		}
 
 	}
-
-	private void uploadImageBX(final Activity context, int y, int id) {
-		menuWinBX = new KzFreezerPopWin(HomeInfoKongzhiAcitvity.this,
-				itemsOnClickBX);
-		// 显示窗口
-		menuWinBX.showAtLocation(HomeInfoKongzhiAcitvity.this.findViewById(id),
-				Gravity.TOP | Gravity.LEFT, 0, y); // 设置layout在PopupWindow中显示的位置
-	}
-
-	private void uploadImageKT(final Activity context, int y, int id) {
-		menuWinKT = new KzAirConditionerPopWin(HomeInfoKongzhiAcitvity.this,
-				itemsOnClickKT);
-		// 显示窗口
-		menuWinKT.showAtLocation(HomeInfoKongzhiAcitvity.this.findViewById(id),
-				Gravity.TOP | Gravity.LEFT, 0, y); // 设置layout在PopupWindow中显示的位置
-	}
-
-	private void uploadImageMQ(final Activity context, int y, int id) {
-		menuWinMQ = new KzGasStatePopWin(HomeInfoKongzhiAcitvity.this,
-				itemsOnClickMQ);
-		// 显示窗口
-		menuWinMQ.showAtLocation(HomeInfoKongzhiAcitvity.this.findViewById(id),
-				Gravity.TOP | Gravity.LEFT, 0, y); // 设置layout在PopupWindow中显示的位置
-	}
-
-	// 为弹出窗口实现监听类
-	private OnClickListener itemsOnClickBX = new OnClickListener() {
-
-		public void onClick(View v) {
-			menuWinBX.dismiss();
-		}
-	};
-	// 为弹出窗口实现监听类
-	private OnClickListener itemsOnClickKT = new OnClickListener() {
-
-		public void onClick(View v) {
-			menuWinKT.dismiss();
-		}
-	};
-	// 为弹出窗口实现监听类
-	private OnClickListener itemsOnClickMQ = new OnClickListener() {
-
-		public void onClick(View v) {
-			menuWinMQ.dismiss();
-		}
-	};
-
 	/**
 	 * 自定义toast
 	 * 
