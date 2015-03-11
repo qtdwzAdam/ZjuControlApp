@@ -1,6 +1,8 @@
 package com.ZjuControlApp.activity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -116,48 +118,107 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements
 		});
 	}
 
-	
-	/* 
-	 * for switch to each handle problem.
-	 * (non-Javadoc)
-	 * @see android.support.v4.app.FragmentActivity#onActivityResult(int, int, android.content.Intent)
+	/*
+	 * for switch to each handle problem. (non-Javadoc)
 	 * 
+	 * @see android.support.v4.app.FragmentActivity#onActivityResult(int, int,
+	 * android.content.Intent)
 	 */
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(resultCode, resultCode, data);
 		Log.i(tag, "onactivityresult.");
 		Intent intent = data;
-		switch (intent.getStringExtra("cmd")) {
-		case "del":
-			switch (intent.getStringExtra("database")) {
-			case ThreeFragmentKzBx.tag:
-				ThreeFragmentKzBx tmp = (ThreeFragmentKzBx) fragmentList.get(0);
-				tmp.tmpTest(data);
+		// switch to each activity
+		switch (intent.getStringExtra("tag")) {
+		// one activity call back.
+		case EditOrDel.tag:
+			switch (intent.getStringExtra("cmd")) {
+			case "del":
+				String titleTmp = data.getStringExtra("title");
+				switch (intent.getStringExtra("database")) {
+				case ThreeFragmentKzBx.tag:
+					ThreeFragmentKzBx tmp = (ThreeFragmentKzBx) fragmentList
+							.get(0);
+					tmp.delByTitle(titleTmp);
+					break;
+				case ThreeFragmentKzKt.tag:
+					ThreeFragmentKzKt tmp1 = (ThreeFragmentKzKt) fragmentList
+							.get(1);
+					tmp1.delByTitle(titleTmp);
+					break;
+				case ThreeFragmentKzDd.tag:
+					ThreeFragmentKzDd tmp2 = (ThreeFragmentKzDd) fragmentList
+							.get(2);
+					tmp2.delByTitle(titleTmp);
+					break;
+				case ThreeFragmentKzKaig.tag:
+					ThreeFragmentKzKaig tmp3 = (ThreeFragmentKzKaig) fragmentList
+							.get(3);
+					tmp3.delByTitle(titleTmp);
+					break;
+				default:
+					break;
+
+				}
 				break;
-			case ThreeFragmentKzKt.tag:
-				ThreeFragmentKzKt tmp1 = (ThreeFragmentKzKt) fragmentList.get(1);
-				tmp1.tmpTest(data);
+			case "edit":
+				Intent intent1 = new Intent();
+				intent1.setClass(this, ChangeSth.class);
+				String tmpS = intent.getStringExtra("database");
+				intent1.putExtra("database", tmpS);
+				tmpS = intent.getStringExtra("position");
+				intent1.putExtra("position", tmpS);
+				intent1.putExtra("title", intent.getStringExtra("title"));
+				// lvAdapter.notifyDataSetChanged();
+				startActivityForResult(intent1, Activity.RESULT_FIRST_USER);
 				break;
-			case ThreeFragmentKzDd.tag:
-				ThreeFragmentKzDd tmp2 = (ThreeFragmentKzDd) fragmentList.get(2);
-				tmp2.tmpTest(data);
-				break;
-			case ThreeFragmentKzKaig.tag:
-				ThreeFragmentKzKaig tmp3 = (ThreeFragmentKzKaig) fragmentList.get(3);
-				tmp3.tmpTest(data);
-				break;
-					
 			default:
 				break;
-
 			}
 			break;
-		case "edit":
-			break;
-		default:
-			break;
+		// another activity call back.
+		case ChangeSth.tag:
+			Log.i(tag, "From the ChangeSth activity");
+			int i = 0;
+			switch (intent.getStringExtra("cmd")) {
+			case "edit":
+				String titleTmp = data.getStringExtra("title");
+				String titlePreTmp = data.getStringExtra("titlePre");
+				String position = data.getStringExtra("position");
+				switch (intent.getStringExtra("database")) {
+				case ThreeFragmentKzBx.tag:
+					ThreeFragmentKzBx tmp = (ThreeFragmentKzBx) fragmentList
+							.get(0);
+					tmp.editTitle(titleTmp, titlePreTmp, position);
+					break;
+				case ThreeFragmentKzKt.tag:
+					ThreeFragmentKzKt tmp1 = (ThreeFragmentKzKt) fragmentList
+							.get(1);
+					tmp1.editTitle(titleTmp, titlePreTmp, position);
+					break;
+				case ThreeFragmentKzDd.tag:
+					ThreeFragmentKzDd tmp2 = (ThreeFragmentKzDd) fragmentList
+							.get(2);
+					tmp2.editTitle(titleTmp, titlePreTmp, position);
+					break;
+				case ThreeFragmentKzKaig.tag:
+					ThreeFragmentKzKaig tmp3 = (ThreeFragmentKzKaig) fragmentList
+							.get(3);
+					tmp3.editTitle(titleTmp, titlePreTmp, position);
+					break;
+				default:
+					break;
+				}
+				Log.i(tag, "end of case");
+				break;
+			case "nothing":
+				break;
+			default:
+				break;
+			}
 		}
+		Log.i(tag, "end of whole");
 
 	}
 
@@ -214,6 +275,7 @@ public class HomeInfoKongzhiAcitvity extends FragmentActivity implements
 		}
 
 	}
+
 	/**
 	 * 自定义toast
 	 * 

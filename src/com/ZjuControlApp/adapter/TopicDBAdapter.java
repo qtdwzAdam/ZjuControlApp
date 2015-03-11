@@ -88,13 +88,28 @@ public class TopicDBAdapter {
 	public void update(long rowid,String title,String info)
 	{
 		mdb=mdbhelper.getWritableDatabase();
-		//Calendar calendar=Calendar.getInstance();
-		//String info=calendar.get(Calendar.YEAR)+"年"+calendar.get(Calendar.MONTH+1)+"月"+calendar.get(Calendar.DAY_OF_MONTH)+"日"+calendar.get(Calendar.HOUR)+"时"+calendar.get(Calendar.MINUTE)+"分";
 		ContentValues values=new ContentValues();
 		values.put(key_title,title);
 	    values.put(key_setting,"Setting");
 	    values.put(key_info,info);
 	    mdb.update(tableName,values,key_id+"="+rowid,null);
+	}
+	
+
+	public Boolean updataByTitle(String title, String titlePre, String info)
+	{
+		mdb=mdbhelper.getReadableDatabase();
+		Cursor cursor = mdb.rawQuery("SELECT * FROM "+ tableName +" WHERE title=?", 
+				new String[]{ title});
+		if (cursor.getCount() != 0)
+			return false;
+		mdb=mdbhelper.getWritableDatabase();
+	    ContentValues values=new ContentValues();
+		values.put(key_title,title);
+	    values.put(key_setting,"Setting");
+	    values.put(key_info,info);
+	    mdb.update(tableName,values,key_title+"=\'"+titlePre+"\'",null);
+	    return true;
 	}
 	
 	public Cursor queryALl()
@@ -129,6 +144,7 @@ public class TopicDBAdapter {
 		mdb=mdbhelper.getWritableDatabase();
 		mdb.delete(tableName,key_id + "=" + rowId,null);
 	}
+	
 	
 	public void delByTitle(String tit)
 	{

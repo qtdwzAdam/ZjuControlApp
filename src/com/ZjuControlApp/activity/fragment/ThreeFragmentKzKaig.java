@@ -112,17 +112,24 @@ public class ThreeFragmentKzKaig extends Fragment implements OnClickListener,
 
 	}
 
-	public void tmpTest(Intent data) 
+	public void delByTitle(String title) 
 	{
-		Intent intent = data;
-		int positin = intent.getIntExtra("position", 0);
-
-		String title = intent.getStringExtra("title");
 		mdbhelper.delByTitle(title);
 		lvAdapter.notifyDataSetChanged();
 	}
 
-	
+	public void editTitle(String title, String titlePre, String position)
+	{
+		if (title.equals(titlePre))
+			return;
+		Map<String, Object> tmpItem = (HashMap<String, Object>) lv
+				.getItemAtPosition(Integer.parseInt(position));
+		String tmpInfo = tmpItem.get("info").toString();
+		if (! mdbhelper.updataByTitle(title, titlePre, tmpInfo))
+			showTips(R.drawable.tips_warning, "修改失败-名称重复");
+
+		lvAdapter.notifyDataSetChanged();
+	}
 	 @Override
 	 public void onActivityResult(int requestCode, int resultCode, Intent
 	 data) {
